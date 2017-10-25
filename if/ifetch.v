@@ -1,10 +1,9 @@
-`include "include/params.vh"
-
 module ifetch(clk, rst,
           v_i, v_o,
           inst_i, inst_o,
           branch_i, baddr_i, addr_o,
           stall_i, stall_o);
+`include "include/params.vh"
     input clk, rst;
     input v_i;
     output v_o;
