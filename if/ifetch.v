@@ -3,7 +3,9 @@ module ifetch(clk, rst,
           inst_i, inst_o,
           branch_i, baddr_i, addr_o,
           stall_i, stall_o);
+
 `include "include/params.vh"
+
     input clk, rst;
     input v_i;
     output v_o;
@@ -28,22 +30,24 @@ module ifetch(clk, rst,
     // stall to previous stage
     assign stall_o = (v_r & stall_i);
 
-    always @(posedge clk or negedge rst)
-      begin
-        if (~rst)
-          begin
+    always @(posedge clk or negedge rst) begin
+        if (~rst) begin
             v_r <= 0;
             inst_r <= 0;
             addr_r <= 0;
-          end
-        else
-          begin
-            if (~stall_i)
-              begin
+        end
+        else begin
+            if (~stall_i) begin
                 v_r <= v_i;
                 inst_r <= inst_i;
-              end
-          end
-      end
+                if (branch_i) begin
+                    addr_r <= baddr_i;
+                end
+                else begin
+                    addr_r <= addr_r + 1;
+                end
+            end
+        end
+    end
 endmodule
 

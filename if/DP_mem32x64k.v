@@ -24,7 +24,7 @@ module DP_mem32x64k(clk, A, W, D, Q);
       end
 
     initial begin
-        $readmemh("../mem/mem.dat", mem_bank);
+        $readmemh("mem/mem.dat", mem_bank);
     end
 endmodule // DP_mem32x64k
 

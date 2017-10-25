@@ -2,7 +2,7 @@
 
 all: simv
 
-simv: if/*.v
+simv: test/test_if.v if/*.v top/*.v
 	vcs $^
 
 clean:
