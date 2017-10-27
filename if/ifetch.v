@@ -17,23 +17,20 @@ module ifetch(clk, rst,
 
     // pipeline registers
     reg v_r;
-    reg [WORD - 1:0] inst_r;
     reg [ADDR - 1:0] addr_r;
     
     // connecting registers to output
     assign v_o = v_r;
-    assign inst_o = inst_r;
+    assign inst_o = inst_i;
     assign addr_o = addr_r;
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             v_r <= 0;
-            inst_r <= 0;
             addr_r <= 0;
         end
         else begin
             if (~stall_i) begin
-                inst_r <= inst_i;
                 if (branch_i == 1'b1) begin
                     addr_r <= baddr_i;
                     v_r <= 1'b0;

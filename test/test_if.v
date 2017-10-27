@@ -29,11 +29,15 @@ module test_if();
         #(STEP * 4);
         branch_r = 1'b1;
         baddr_r = 2;
+        #(STEP);
+        branch_r = 1'b0;
+        baddr_r = 0;
         #(STEP * 4);
         $finish;
     end // initial
 
-    always @(posedge clk) begin
+    always @(posedge clk) begin : BREAK
+        if (~rst) disable BREAK;
         $display("###### cycle ######");
         $display("branch_i baddr_i addr_o   inst_i   inst_o v_o");
         $display("       %b    %h   %h %h %h   %b",
