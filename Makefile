@@ -1,13 +1,12 @@
-.PHONY: clean distclean
+.PHONY: clean 
 
 all: simv
 
 simv: test/test_if.v if/*.v top/*.v
+	$(MAKE) -C util
 	vcs $^
 
 clean:
-	rm -rf csrc simv.daidir
-
-distclean: clean
-	rm -f simv
+	$(MAKE) -C util clean
+	rm -rf csrc simv.daidir ucli.key simv
 
