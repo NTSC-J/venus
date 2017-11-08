@@ -22,14 +22,14 @@ function [W_DOPC - 1:0] decode_ope;
         7'b000_1011,
         7'b000_1100,
         7'b000_1101:
-            decode_ope = 11'b001000;
+            decode_ope = 11'b010000;
             
         // logic
         7'b001_0000,
         7'b001_0001,
         7'b001_0010,
         7'b001_0011:
-            decode_ope = 11'b010000;
+            decode_ope = 11'b001000;
 
         // load
         7'b001_1000:
