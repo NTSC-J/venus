@@ -1,24 +1,45 @@
-module idecode(clk, rst,
-            v_i, v_o,
-            inst_i,
-            src_o, dest_o,
-            dopc_o,
-            stall_i, stall_o);
+module idecode(
+    // global
+    clk, rst,
+    // IF
+    v_i, stall_o,
+    inst_i,             // instruction
+    // EX
+    src_o, dest_o,      // read register data
+    wb_o,               // whether writeback is required
+    rd_num_o,           // register number of rd (used in WB stage)
+    dopc_o,             // decoded opecode
+    stall_i, v_o,
+    // register file
+    w_reserve_o,
+    r0_num_o, r1_num_o,
+    r0_data_i, r1_data_i,
+    reserved_i
+);
 
 `include "include/params.vh"
 `include "id/decode_ope.v"
 `include "id/expand_imm.v"
 
+    // global
     input clk, rst;
+    // IF
     input v_i;
-    output v_o;
-    input [WORD - 1:0] inst_i; // instruction
-    output [WORD - 1:0] src_o, dest_o;
-    output [W_RD - 1:0] rdnum_o; // the register No. to wb the result
-    output wb_o; // whether wb is required
-    output [W_DOPC - 1:0] dopc_o; // decoded opecode
-    input stall_i;
     output stall_o;
+    input [WORD - 1:0] inst_i;
+    // EX
+    output [WORD - 1:0] src_o, dest_o;
+    output wb_o;
+    output [W_RD - 1:0] rd_num_o;
+    output [W_DOPC - 1:0] dopc_o;
+    output v_o;
+    input stall_i;
+    // register file
+    output w_reserve_o;
+    output [W_RD - 1:0] r0_num_o;
+    output [W_RS - 1:0] r1_num_o;
+    input [WORD - 1:0] r0_data_i, r1_data_i;
+    input reserved_i;
 
     // pipeline registers
     reg v_r;
@@ -41,6 +62,9 @@ module idecode(clk, rst,
 
     wire [W_DOPC - 1:0] dopc = decode_ope(opecode);
 
+    assign r0_num_o = rd_num;
+    assign r1_num_o = rs_num;
+
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             v_r <= 0;
@@ -51,9 +75,9 @@ module idecode(clk, rst,
                 if (immf)
                     src_r <= expand_imm(opecode, imm);
                 else
-                    src_r <= regi(rs_num);
+                    src_r <= r1_data_i;
 
-                dest_r <= regi(rd_num);
+                dest_r <= r0_data_i;
                 dopc_r <= dopc;
             end
         end
