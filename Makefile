@@ -12,3 +12,6 @@ clean:
 	$(MAKE) -C reg clean
 	rm -rf csrc simv.daidir ucli.key simv
 
+test_if: test/test_if.v test/test_if_top.v if/*.v
+	vcs $^
+	

@@ -35,9 +35,9 @@ module ifetch(clk, rst,
         end
         else begin
             if (~stall_i) begin
+                origaddr_r <= addr_r;
                 if (branch_i == 1'b1) begin
                     addr_r <= baddr_i;
-                    origaddr_r <= addr_r;
                     v_r <= 1'b0;
                 end
                 else begin
