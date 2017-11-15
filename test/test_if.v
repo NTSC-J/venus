@@ -39,11 +39,12 @@ module test_if();
     always @(posedge clk) begin : BREAK
         if (~rst) disable BREAK;
         $display("###### cycle ######");
-        $display("branch_i baddr_i addr_o   inst_i   inst_o v_o");
-        $display("       %b    %h   %h %h %h   %b",
+        $display("branch_i baddr_i addr_o origaddr_o   inst_i   inst_o v_o");
+        $display("       %b    %h   %h       %h %h %h   %b",
                 top.ifetch1.branch_i,
                 top.ifetch1.baddr_i,
                 top.ifetch1.addr_o,
+                top.ifetch1.origaddr_o,
                 top.ifetch1.inst_i,
                 top.ifetch1.inst_o,
                 top.ifetch1.v_o);
