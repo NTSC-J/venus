@@ -7,7 +7,7 @@ module test_if();
     reg branch_r;
     reg [ADDR - 1:0] baddr_r;
 
-    top top(.clk(clk), .rst(rst),
+    test_if_top top(.clk(clk), .rst(rst),
          .v_i(1'b1), .stall_i(1'b0),
          .branch_i(branch_r), .baddr_i(baddr_r));
 

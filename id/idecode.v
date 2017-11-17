@@ -4,11 +4,14 @@ module idecode(
     // IF
     v_i, stall_o,
     inst_i,             // instruction
+    origaddr_i,         // addr of the instruction
     // EX
-    src_o, dest_o,      // read register data
+    src_o, dest_o,      // read register/imm data
     wb_o,               // whether writeback is required
     rd_num_o,           // register number of rd (used in WB stage)
     dopc_o,             // decoded opecode
+    opc_o,              // raw opecode
+    origaddr_o,
     stall_i, v_o,
     // register file
     w_reserve_o,
@@ -27,11 +30,14 @@ module idecode(
     input v_i;
     output stall_o;
     input [WORD - 1:0] inst_i;
+    input [ADDR - 1:0] origaddr_i;
     // EX
     output [WORD - 1:0] src_o, dest_o;
     output wb_o;
     output [W_RD - 1:0] rd_num_o;
     output [W_DOPC - 1:0] dopc_o;
+    output [W_OPC - 1:0] opc_o;
+    output [ADDR - 1:0] origaddr_o;
     output v_o;
     input stall_i;
     // register file
@@ -45,13 +51,17 @@ module idecode(
     reg v_r;
     reg [WORD - 1:0] src_r, dest_r;
     reg [W_DOPC - 1:0] dopc_r;
+    reg [W_OPC - 1:0] opc_r;
+    reg [ADDR - 1:0] origaddr_r;
 
     // connecting registers to output
     assign v_o = v_r;
-    assign stall_o = (v_r & stall_i);
+    assign stall_o = (v_r & stall_i) | reserved_i; // TODO: when using imm
     assign src_o = src_r;
     assign dest_o = dest_r;
     assign dopc_o = dopc_r;
+    assign opc_o = opc_r;
+    assign origaddr_o = origaddr_r;
 
     // decoding the instruction
     wire [W_OPC - 1:0] opecode = inst_i[OPC_MSB:OPC_LSB];
@@ -79,6 +89,8 @@ module idecode(
 
                 dest_r <= r0_data_i;
                 dopc_r <= dopc;
+                opc_r <= opecode;
+                origaddr_r <= origaddr_i;
             end
         end
     end
