@@ -2,7 +2,7 @@
  * the top module for the Venus CPU
  */
 
-module top(clk, rst);
+module core(clk, rst);
 
 `include "include/params.vh"
 
