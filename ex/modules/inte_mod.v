@@ -1,3 +1,17 @@
+/*
+ * EX module for integer ops
+ *
+ * used by instructions:
+ * ADDx
+ * SUBX
+ * MULx
+ * DIVx
+ * CMPx
+ * ABSx
+ * ADCx
+ * SBCx
+ */
+
 `include "include/mnemonic.vh"
 
 function [WORD + W_FLAGS - 1:0] inte_mod;
