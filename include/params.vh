@@ -22,3 +22,5 @@ parameter W_IMM = 1 + IMM_MSB - IMM_LSB;
 
 parameter W_DOPC = 6;
 
+parameter W_FLAGS = 6;
+

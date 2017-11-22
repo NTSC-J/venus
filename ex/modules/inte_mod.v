@@ -24,18 +24,19 @@ function [WORD + W_FLAGS - 1:0] inte_mod;
     ADDx:
         temp = src_i + dest_i;
     SUBx:
-        temp = dest_r - src_i; // TODO
+        temp = dest_i - src_i; // TODO
     default:
         temp = 0;
     endcase
     
-    reg zero = &(~temp);
-    reg negative = temp[WORD - 1];
-    reg positive = ~zero & ~negative;
-    reg carry = temp[WORD];
+    reg zero, negative, positive, carry, underflow, overflow;
+    assign zero = ~(|temp);
+    assign negative = temp[WORD - 1];
+    assign positive = ~zero & ~negative;
+    assign carry = temp[WORD];
     // TODO
-    reg overflow = 1'b0;
-    reg underflow = 1'b0;
+    assign overflow = 1'b0;
+    assign underflow = 1'b0;
 
     inte_mod = {temp[WORD - 1:0], zero, positive, carry, overflow, underflow
    };

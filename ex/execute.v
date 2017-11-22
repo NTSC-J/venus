@@ -17,12 +17,12 @@ module execute(
 );
 
 `include "include/params.vh"
-`include "ex/inte_mod.v"
-`include "ex/shift_mod.v"
-`include "ex/logic_mod.v"
-`include "ex/load_mod.v"
-`include "ex/store_mod.v"
-`include "ex/branch_mod.v"
+`include "ex/modules/inte_mod.v"
+`include "ex/modules/shift_mod.v"
+`include "ex/modules/logic_mod.v"
+`include "ex/modules/load_mod.v"
+`include "ex/modules/store_mod.v"
+`include "ex/modules/branch_mod.v"
 
     // global
     input clk, rst;

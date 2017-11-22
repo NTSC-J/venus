@@ -16,7 +16,7 @@ function [WORD - 1:0] expand_imm;
         7'b001_1001,
         7'b001_1100,
         7'b001_1101:
-            expand_imm = {16{imm[W_IMM - 1]}, imm};
+            expand_imm = {{16{imm[W_IMM - 1]}}, imm};
 
         default:
             expand_imm = {16'b0, imm};

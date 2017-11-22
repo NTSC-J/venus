@@ -2,10 +2,10 @@
 
 all: simv
 
-simv: test/test_if.v if/*.v top/*.v
+simv:
 	$(MAKE) -C util
 	$(MAKE) -C reg
-	vcs $^
+	vcs build.v
 
 clean:
 	$(MAKE) -C util clean
