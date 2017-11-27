@@ -3,14 +3,14 @@ module DP_mem32x64k(clk, A, W, D, Q);
     parameter LEN = 65535;
 
     input clk;
-    input [ADDR - 1:0] A;
+    input [`ADDR - 1:0] A;
     input W;
-    input [WORD - 1:0] D;
-    output [WORD - 1:0] Q;
+    input [`WORD - 1:0] D;
+    output [`WORD - 1:0] Q;
 
-    reg [WORD - 1:0] mem_bank [0:LEN];
+    reg [`WORD - 1:0] mem_bank [0:LEN];
 
-    reg [WORD - 1:0] o_reg;
+    reg [`WORD - 1:0] o_reg;
 
     assign Q = o_reg;
 

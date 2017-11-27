@@ -29,30 +29,30 @@ module idecode(
     // IF
     input v_i;
     output stall_o;
-    input [WORD - 1:0] inst_i;
-    input [ADDR - 1:0] origaddr_i;
+    input [`WORD - 1:0] inst_i;
+    input [`ADDR - 1:0] origaddr_i;
     // EX
-    output [WORD - 1:0] src_o, dest_o;
+    output [`WORD - 1:0] src_o, dest_o;
     output wb_o;
-    output [W_RD - 1:0] rd_num_o;
-    output [W_DOPC - 1:0] dopc_o;
-    output [W_OPC - 1:0] opc_o;
-    output [ADDR - 1:0] origaddr_o;
+    output [`W_RD - 1:0] rd_num_o;
+    output [`W_DOPC - 1:0] dopc_o;
+    output [`W_OPC - 1:0] opc_o;
+    output [`ADDR - 1:0] origaddr_o;
     output v_o;
     input stall_i;
     // register file
     output w_reserve_o;
-    output [W_RD - 1:0] r0_num_o;
-    output [W_RS - 1:0] r1_num_o;
-    input [WORD - 1:0] r0_data_i, r1_data_i;
+    output [`W_RD - 1:0] r0_num_o;
+    output [`W_RS - 1:0] r1_num_o;
+    input [`WORD - 1:0] r0_data_i, r1_data_i;
     input reserved_i;
 
     // pipeline registers
     reg v_r;
-    reg [WORD - 1:0] src_r, dest_r;
-    reg [W_DOPC - 1:0] dopc_r;
-    reg [W_OPC - 1:0] opc_r;
-    reg [ADDR - 1:0] origaddr_r;
+    reg [`WORD - 1:0] src_r, dest_r;
+    reg [`W_DOPC - 1:0] dopc_r;
+    reg [`W_OPC - 1:0] opc_r;
+    reg [`ADDR - 1:0] origaddr_r;
 
     // connecting registers to output
     assign v_o = v_r;
@@ -64,13 +64,13 @@ module idecode(
     assign origaddr_o = origaddr_r;
 
     // decoding the instruction
-    wire [W_OPC - 1:0] opecode = inst_i[OPC_MSB:OPC_LSB];
-    wire immf = inst_i[IMMF_BIT];
-    wire [W_RD - 1:0] rd_num = inst_i[RD_MSB:RD_LSB];
-    wire [W_RS - 1:0] rs_num = inst_i[RS_MSB:RS_LSB];
-    wire [W_IMM - 1:0] imm = inst_i[IMM_MSB:IMM_LSB];
+    wire [`W_OPC - 1:0] opecode = inst_i[`OPC_MSB:`OPC_LSB];
+    wire immf = inst_i[`IMMF_BIT];
+    wire [`W_RD - 1:0] rd_num = inst_i[`RD_MSB:`RD_LSB];
+    wire [`W_RS - 1:0] rs_num = inst_i[`RS_MSB:`RS_LSB];
+    wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
 
-    wire [W_DOPC - 1:0] dopc = decode_ope(opecode);
+    wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
 
     assign r0_num_o = rd_num;
     assign r1_num_o = rs_num;

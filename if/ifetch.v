@@ -8,18 +8,18 @@ module ifetch(clk, rst,
 
     input clk, rst;
     output v_o;
-    input [WORD - 1:0] inst_i;
-    output [WORD - 1:0] inst_o;
+    input [`WORD - 1:0] inst_i;
+    output [`WORD - 1:0] inst_o;
     input branch_i; // whether branch or not
-    input [ADDR - 1:0] baddr_i; // address to branch to
-    output [ADDR - 1:0] addr_o; // address to read next time
-    output [ADDR - 1:0] origaddr_o; // address of branch instruction
+    input [`ADDR - 1:0] baddr_i; // address to branch to
+    output [`ADDR - 1:0] addr_o; // address to read next time
+    output [`ADDR - 1:0] origaddr_o; // address of branch instruction
     input stall_i;
 
     // pipeline registers
     reg v_r;
-    reg [ADDR - 1:0] addr_r;
-    reg [ADDR - 1:0] origaddr_r;
+    reg [`ADDR - 1:0] addr_r;
+    reg [`ADDR - 1:0] origaddr_r;
     
     // connecting registers to output
     assign v_o = v_r;

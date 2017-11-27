@@ -1,7 +1,6 @@
 // decode opecode
 // dopc = {inte, shift, logic, load, store, branch}
-`define W_DOPC 6
-function [W_DOPC - 1:0] decode_ope;
+function [`W_DOPC - 1:0] decode_ope;
     input [6:0] opecode;
     case (opecode) // synopsis parallel_case
         // integer

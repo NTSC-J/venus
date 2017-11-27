@@ -29,7 +29,7 @@ module execute(
     // ID
     input v_i;
     output stall_o;
-    input [WORD -1:0] src_i, dest_i;
+    input [`WORD -1:0] src_i, dest_i;
     input wb_i;
     input rd_num_i;
     input dopc_i;
@@ -38,18 +38,18 @@ module execute(
     // WB
     input stall_i;
     output v_o;
-    output [W_RD - 1:0] rd_num_o;
+    output [`W_RD - 1:0] rd_num_o;
     output wb_o;
-    output [WORD - 1:0] rd_data_o;
+    output [`WORD - 1:0] rd_data_o;
 
     // pipeline registers
     reg v_r;
-    reg [W_RD - 1:0] rd_num_r;
+    reg [`W_RD - 1:0] rd_num_r;
     reg wb_r;
-    reg [WORD - 1:0] rd_data_r;
+    reg [`WORD - 1:0] rd_data_r;
 
     // internal register
-    reg [W_FLAGS - 1:0] flags;
+    reg [`W_FLAGS - 1:0] flags;
 
     // connecting registers to output
     assign v_o = v_r;
@@ -58,12 +58,12 @@ module execute(
     assign wb_o = wb_r;
     assign rd_data_o = rd_data_r;
 
-    assign inte   = dopc_i[W_DOPC - 1];
-    assign shift  = dopc_i[W_DOPC - 2];
-    assign logic  = dopc_i[W_DOPC - 3];
-    assign load   = dopc_i[W_DOPC - 4];
-    assign store  = dopc_i[W_DOPC - 5];
-    assign branch = dopc_i[W_DOPC - 6];
+    assign inte   = dopc_i[`W_DOPC - 1];
+    assign shift  = dopc_i[`W_DOPC - 2];
+    assign logic  = dopc_i[`W_DOPC - 3];
+    assign load   = dopc_i[`W_DOPC - 4];
+    assign store  = dopc_i[`W_DOPC - 5];
+    assign branch = dopc_i[`W_DOPC - 6];
 
     // data: {rd,flags}
     assign inte_data = inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
@@ -74,10 +74,10 @@ module execute(
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
     assign actual_data =
-        ({(WORD + W_FLAGS){inte}} & inte_data);
-//        ({(WORD + W_FLAGS){shift}} & shift_data) |
-//        ({(WORD + W_FLAGS){logic}} & logic_data) |
-//        ({(WORD + W_FLAGS){load}} & load_data);
+        ({(`WORD + `W_FLAGS){inte}} & inte_data);
+//        ({(`WORD + `W_FLAGS){shift}} & shift_data) |
+//        ({(`WORD + `W_FLAGS){logic}} & logic_data) |
+//        ({(`WORD + `W_FLAGS){load}} & load_data);
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
@@ -92,8 +92,8 @@ module execute(
                 v_r <= v_i;
                 rd_num_r <= rd_num_i;
                 wb_r <= wb_i;
-                rd_data_r <= actual_data[WORD + W_FLAGS - 1:W_FLAGS];
-                flags <= actual_data[W_FLAGS - 1:0];
+                rd_data_r <= actual_data[`WORD + `W_FLAGS - 1:`W_FLAGS];
+                flags <= actual_data[`W_FLAGS - 1:0];
             end
         end
     end

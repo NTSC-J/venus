@@ -5,10 +5,10 @@ module test_if_top(clk, rst, v_i, stall_i, branch_i, baddr_i);
     input clk, rst;
     input v_i, stall_i;
     input branch_i;
-    input [ADDR - 1:0] baddr_i;
+    input [`ADDR - 1:0] baddr_i;
 
-    wire [ADDR - 1:0] addr;
-    wire [WORD - 1:0] inst_mem, inst_f;
+    wire [`ADDR - 1:0] addr;
+    wire [`WORD - 1:0] inst_mem, inst_f;
     ifetch ifetch1(
         .clk(clk), .rst(rst),
         .inst_i(inst_mem), .inst_o(inst_f),

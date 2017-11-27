@@ -26,16 +26,16 @@ module g_register(
     input clk, rst;
 
     input w_reserve_i;
-    input [W_RD - 1:0] r0_num_i, r1_num_i;
-    output [WORD - 1:0] r0_data_o, r1_data_o;
+    input [`W_RD - 1:0] r0_num_i, r1_num_i;
+    output [`WORD - 1:0] r0_data_o, r1_data_o;
     output reserved_o;
 
     input wb_i;
-    input [W_RD - 1:0] wbr_num_i;
-    input [WORD - 1:0] wb_data_i;
+    input [`W_RD - 1:0] wbr_num_i;
+    input [`WORD - 1:0] wb_data_i;
 
 EOS
-printf("    wire [WORD - 1:0] ");
+printf("    wire [`WORD - 1:0] ");
 for (my $i = 0; $i < 15; $i++) {
     printf("data%x, ", $i);
 }
@@ -49,10 +49,10 @@ for (my $i = 0; $i < 2; $i++) {
 }
 print << "EOS";
 
-    wire [REG_S - 1:0] w_reserved;
-    wire [REG_S - 1:0] w_reserve = decode16(r0_num_i) & {16{w_reserve_i}};
+    wire [`REG_S - 1:0] w_reserved;
+    wire [`REG_S - 1:0] w_reserve = decode16(r0_num_i) & {16{w_reserve_i}};
     assign reserved_o = |((decode16(r0_num_i) | decode16(r1_num_i)) & w_reserved);
-    wire [REG_S - 1:0] wb_r = decode16(wbr_num_i) & {16{wb_i}};
+    wire [`REG_S - 1:0] wb_r = decode16(wbr_num_i) & {16{wb_i}};
 
 EOS
 for (my $i = 0; $i < 16; $i++) {

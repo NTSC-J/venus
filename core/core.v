@@ -13,27 +13,27 @@ module core(clk, rst);
     wire v_ifid, v_idex, v_exwb;
     wire stall_idif, stall_exid, stall_wbex;
     // wires for IF, ID stages
-    wire [ADDR - 1:0] addr_ifid, origaddr_ifid;
-    wire [WORD - 1:0] inst_mem, inst_ifid;
+    wire [`ADDR - 1:0] addr_ifid, origaddr_ifid;
+    wire [`WORD - 1:0] inst_mem, inst_ifid;
     // wires for ID, EX stages
-    wire [WORD - 1:0] src_idex, dest_idex;
+    wire [`WORD - 1:0] src_idex, dest_idex;
     wire wb_idex;
-    wire [W_RD - 1:0] rd_num_idex;
-    wire [W_DOPC - 1:0] dopc_idex;
-    wire [W_OPC - 1:0] opc_idex;
-    wire [ADDR - 1:0] origaddr_idex;
+    wire [`W_RD - 1:0] rd_num_idex;
+    wire [`W_DOPC - 1:0] dopc_idex;
+    wire [`W_OPC - 1:0] opc_idex;
+    wire [`ADDR - 1:0] origaddr_idex;
     // wires for EX, WB stages
     wire wb_exwb;
-    wire [W_RD - 1:0] rd_num_exwb;
-    wire [WORD - 1:0] rd_data_exwb;
+    wire [`W_RD - 1:0] rd_num_exwb;
+    wire [`WORD - 1:0] rd_data_exwb;
     // wires to/from the register file
     wire w_reserve_idreg;
-    wire [W_RD - 1:0] r0_num_idreg, r1_num_idreg;
-    wire [WORD - 1:0] r0_data_regid, r1_data_regid;
+    wire [`W_RD - 1:0] r0_num_idreg, r1_num_idreg;
+    wire [`WORD - 1:0] r0_data_regid, r1_data_regid;
     wire reserved_regid;
     wire wb_wbreg;
-    wire [W_RD - 1:0] wbr_num_wbreg;
-    wire [WORD - 1:0] wb_data_wbreg;
+    wire [`W_RD - 1:0] wbr_num_wbreg;
+    wire [`WORD - 1:0] wb_data_wbreg;
 
     g_register g_register1(
         // global
@@ -51,7 +51,7 @@ module core(clk, rst);
     ifetch ifetch1(
         .clk(clk), .rst(rst),
         .inst_i(inst_mem), .inst_o(inst_ifid),
-        .branch_i(1'b0), .baddr_i({ADDR{1'b0}}),
+        .branch_i(1'b0), .baddr_i({`ADDR{1'b0}}),
         .addr_o(addr_ifid), .origaddr_o(origaddr_ifid),
         .stall_i(stall_idif), .v_o(v_ifid)
     );
