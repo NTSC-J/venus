@@ -31,10 +31,10 @@ module execute(
     output stall_o;
     input [`WORD -1:0] src_i, dest_i;
     input wb_i;
-    input rd_num_i;
-    input dopc_i;
-    input opc_i;
-    input origaddr_i;
+    input [`W_RD - 1:0] rd_num_i;
+    input [`W_DOPC - 1:0] dopc_i;
+    input [`W_OPC - 1:0] opc_i;
+    input [`ADDR - 1:0] origaddr_i;
     // WB
     input stall_i;
     output v_o;
@@ -73,6 +73,7 @@ module execute(
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
+    wire [`WORD + `W_FLAGS - 1:0] actual_data;
     assign actual_data =
         ({(`WORD + `W_FLAGS){inte}} & inte_data);
 //        ({(`WORD + `W_FLAGS){shift}} & shift_data) |
