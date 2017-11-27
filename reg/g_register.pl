@@ -27,7 +27,7 @@ module g_register(
 
     input w_reserve_i;
     input [W_RD - 1:0] r0_num_i, r1_num_i;
-    output [WORD - 1:0] r0_data_o, r1_data_0;
+    output [WORD - 1:0] r0_data_o, r1_data_o;
     output reserved_o;
 
     input wb_i;
@@ -65,4 +65,8 @@ for (my $i = 0; $i < 16; $i++) {
            "        .wb_i(wb_r[%1\$d])\n".
            "    );\n", $i);
 }
+print << "EOS";
+endmodule
+
+EOS
 

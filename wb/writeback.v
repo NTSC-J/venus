@@ -11,7 +11,7 @@ module writeback(
     wbr_num_o,
     wb_data_o
 );
-
+`include "include/params.vh"
     input clk, rst;
 
     input v_i;

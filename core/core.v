@@ -23,6 +23,9 @@ module core(clk, rst);
     wire [W_OPC - 1:0] opc_idex;
     wire [ADDR - 1:0] origaddr_idex;
     // wires for EX, WB stages
+    wire wb_exwb;
+    wire [W_RD - 1:0] rd_num_exwb;
+    wire [WORD - 1:0] rd_data_exwb;
     // wires to/from the register file
     wire w_reserve_idreg;
     wire [W_RD - 1:0] r0_num_idreg, r1_num_idreg;
@@ -82,15 +85,19 @@ module core(clk, rst);
         .wb_i(wb_idex), .rd_num_i(rd_num_idex),
         .dopc_i(dopc_idex), .opc_i(opc_idex),
         .origaddr_i(origaddr_idex),
-        .stall_i(stall_wbex), .v_o(v_exwb),
         // WB
+        .stall_i(stall_wbex), .v_o(v_exwb),
+        .wb_o(wb_exwb), .rd_num_o(rd_num_exwb),
+        .rd_data_o(rd_data_exwb)
     );
     // TODO: data memory
     writeback writeback1(
         // global
         .clk(clk), .rst(rst),
         // EX
-        .v_i(v_exwb), .stall_o(stall_wbex)
+        .v_i(v_exwb), .stall_o(stall_wbex),
+        .wb_i(wb_exwb), .rd_num_i(rd_num_exwb),
+        .rd_data_i(rd_data_exwb)
     );
 endmodule
 

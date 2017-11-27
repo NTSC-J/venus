@@ -1,6 +1,5 @@
 module DP_mem32x64k(clk, A, W, D, Q);
-    parameter WORD = 32;
-    parameter ADDR = 16;
+`include "include/params.vh"
     parameter LEN = 65535;
 
     input clk;

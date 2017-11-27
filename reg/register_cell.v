@@ -1,3 +1,4 @@
+`include "include/params.vh"
 module register_cell(clk, rst,
                      data_i,
                      data_o,
@@ -6,13 +7,13 @@ module register_cell(clk, rst,
                      wb_i
                      );
    input clk, rst;
-   input  [W_OPR -1: 0] data_i; // data for write
-   output [W_OPR -1: 0] data_o; // data output
+   input  [`WORD -1: 0] data_i; // data for write
+   output [`WORD -1: 0] data_o; // data output
    input                w_reserve_i; // write reserve
    output               w_reserve_o; // write reserve out
    input                wb_i; // write back
 
-   reg [W_OPR-1: 0]     data_cell; // register cell
+   reg [`WORD-1: 0]     data_cell; // register cell
    reg                  w_res; // write reserve bit
 
 

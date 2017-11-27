@@ -5,7 +5,7 @@ all: simv
 simv:
 	$(MAKE) -C util
 	$(MAKE) -C reg
-	vcs build.v
+	vcs +error+1000 build.v
 
 clean:
 	$(MAKE) -C util clean

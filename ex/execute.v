@@ -18,11 +18,11 @@ module execute(
 
 `include "include/params.vh"
 `include "ex/modules/inte_mod.v"
-`include "ex/modules/shift_mod.v"
-`include "ex/modules/logic_mod.v"
-`include "ex/modules/load_mod.v"
-`include "ex/modules/store_mod.v"
-`include "ex/modules/branch_mod.v"
+//`include "ex/modules/shift_mod.v"
+//`include "ex/modules/logic_mod.v"
+//`include "ex/modules/load_mod.v"
+//`include "ex/modules/store_mod.v"
+//`include "ex/modules/branch_mod.v"
 
     // global
     input clk, rst;
@@ -58,26 +58,26 @@ module execute(
     assign wb_o = wb_r;
     assign rd_data_o = rd_data_r;
 
-    assign inte   = dopc[W_DOPC - 1];
-    assign shift  = dopc[W_DOPC - 2];
-    assign logic  = dopc[W_DOPC - 3];
-    assign load   = dopc[W_DOPC - 4];
-    assign store  = dopc[W_DOPC - 5];
-    assign branch = dopc[W_DOPC - 6];
+    assign inte   = dopc_i[W_DOPC - 1];
+    assign shift  = dopc_i[W_DOPC - 2];
+    assign logic  = dopc_i[W_DOPC - 3];
+    assign load   = dopc_i[W_DOPC - 4];
+    assign store  = dopc_i[W_DOPC - 5];
+    assign branch = dopc_i[W_DOPC - 6];
 
     // data: {rd,flags}
     assign inte_data = inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    assign shift_data = shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    assign logic_data = logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    assign load_data = load_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+//    assign shift_data = shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+//    assign logic_data = logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+//    assign load_data = load_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+//    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+//    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
     assign actual_data =
-        ({(WORD + W_FLAGS){inte}} & inte_data) |
-        ({(WORD + W_FLAGS){shift}} & shift_data) |
-        ({(WORD + W_FLAGS){logic}} & logic_data) |
-        ({(WORD + W_FLAGS){load}} & load_data);
+        ({(WORD + W_FLAGS){inte}} & inte_data);
+//        ({(WORD + W_FLAGS){shift}} & shift_data) |
+//        ({(WORD + W_FLAGS){logic}} & logic_data) |
+//        ({(WORD + W_FLAGS){load}} & load_data);
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
