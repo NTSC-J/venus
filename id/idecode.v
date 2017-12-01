@@ -23,6 +23,7 @@ module idecode(
 `include "include/params.vh"
 `include "id/decode_ope.v"
 `include "id/expand_imm.v"
+`include "id/wb_required.v"
 
     // global
     input clk, rst;
@@ -53,15 +54,20 @@ module idecode(
     reg [`W_DOPC - 1:0] dopc_r;
     reg [`W_OPC - 1:0] opc_r;
     reg [`ADDR - 1:0] origaddr_r;
+    reg wb_r;
+    reg [`W_RD - 1:0] rd_num_r;
 
     // connecting registers to output
     assign v_o = v_r;
-    assign stall_o = (v_r & stall_i) | reserved_i; // TODO: when using imm
+    //assign stall_o = (v_r & stall_i) | reserved_i; // TODO: when using imm
+    assign stall_o = (v_r & stall_i);
     assign src_o = src_r;
     assign dest_o = dest_r;
     assign dopc_o = dopc_r;
     assign opc_o = opc_r;
     assign origaddr_o = origaddr_r;
+    assign wb_o = wb_r;
+    assign rd_num_o = rd_num_r;
 
     // decoding the instruction
     wire [`W_OPC - 1:0] opecode = inst_i[`OPC_MSB:`OPC_LSB];
@@ -91,6 +97,8 @@ module idecode(
                 dopc_r <= dopc;
                 opc_r <= opecode;
                 origaddr_r <= origaddr_i;
+                rd_num_r <= rd_num;
+                wb_r <= wb_required(opecode);
             end
         end
     end

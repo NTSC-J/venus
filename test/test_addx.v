@@ -18,13 +18,15 @@ module test_addx();
 
         #1.0;
         rst = 1'b1;
-        #(STEP * 128);
+        #(STEP * 18);
         $finish;
     end // initial
 
     always @(posedge clk) begin : BREAK
         if (~rst) disable BREAK;
         $display("###### cycle ######");
+        $display("IF:      branch_i %b, baddr_i %h",
+                c.ifetch1.branch_i, c.ifetch1.baddr_i);
         $display("IF<->ID: v %b, s %b, addr %h, origaddr %h, inst %h",
                 c.v_ifid, c.stall_idif, c.addr_ifmem,
                 c.origaddr_ifid, c.inst_ifid);
