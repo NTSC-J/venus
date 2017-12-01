@@ -3,3 +3,7 @@
 /ucli.key
 /csrc
 
+/reg/g_register.v
+/util/select16.v
+/util/decode16.v
+
