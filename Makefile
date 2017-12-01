@@ -1,11 +1,13 @@
-.PHONY: clean 
+.PHONY: clean gencode
 
 all: simv
 
-simv:
+simv: gencode
+	vcs +error+1000 build.v
+
+gencode:
 	$(MAKE) -C util
 	$(MAKE) -C reg
-	vcs +error+1000 build.v
 
 clean:
 	$(MAKE) -C util clean
@@ -15,3 +17,6 @@ clean:
 test_if: test/test_if.v test/test_if_top.v if/*.v
 	vcs $^
 	
+test_addx: gencode
+	vcs test/test_addx.v build.v 
+

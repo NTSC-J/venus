@@ -11,8 +11,8 @@ module execute(
     origaddr_i,
     // WB
     stall_i, v_o,
-    rd_num_o,
     wb_o,
+    rd_num_o,
     rd_data_o
 );
 
@@ -38,8 +38,8 @@ module execute(
     // WB
     input stall_i;
     output v_o;
-    output [`W_RD - 1:0] rd_num_o;
     output wb_o;
+    output [`W_RD - 1:0] rd_num_o;
     output [`WORD - 1:0] rd_data_o;
 
     // pipeline registers

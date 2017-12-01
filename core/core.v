@@ -13,8 +13,8 @@ module core(clk, rst);
     wire v_ifid, v_idex, v_exwb;
     wire stall_idif, stall_exid, stall_wbex;
     // wires for IF, ID stages
-    wire [`ADDR - 1:0] addr_ifid, origaddr_ifid;
-    wire [`WORD - 1:0] inst_mem, inst_ifid;
+    wire [`ADDR - 1:0] addr_ifmem, origaddr_ifid;
+    wire [`WORD - 1:0] inst_memif, inst_ifid;
     // wires for ID, EX stages
     wire [`WORD - 1:0] src_idex, dest_idex;
     wire wb_idex;
@@ -50,14 +50,14 @@ module core(clk, rst);
     );
     ifetch ifetch1(
         .clk(clk), .rst(rst),
-        .inst_i(inst_mem), .inst_o(inst_ifid),
+        .inst_i(inst_memif), .inst_o(inst_ifid),
         .branch_i(1'b0), .baddr_i({`ADDR{1'b0}}),
-        .addr_o(addr_ifid), .origaddr_o(origaddr_ifid),
+        .addr_o(addr_ifmem), .origaddr_o(origaddr_ifid),
         .stall_i(stall_idif), .v_o(v_ifid)
     );
     // instruction memory
     DP_mem32x64k imem(
-        .clk(clk), .A(addr), .W(1'b0), .D(), .Q(inst_mem)
+        .clk(clk), .A(addr_ifmem), .W(1'b0), .D(), .Q(inst_memif)
     );
     idecode idecode1(
         // global
@@ -82,6 +82,7 @@ module core(clk, rst);
         .clk(clk), .rst(rst),
         // ID
         .v_i(v_idex), .stall_o(stall_exid),
+        .src_i(src_idex), .dest_i(dest_idex),
         .wb_i(wb_idex), .rd_num_i(rd_num_idex),
         .dopc_i(dopc_idex), .opc_i(opc_idex),
         .origaddr_i(origaddr_idex),
@@ -97,7 +98,10 @@ module core(clk, rst);
         // EX
         .v_i(v_exwb), .stall_o(stall_wbex),
         .wb_i(wb_exwb), .rd_num_i(rd_num_exwb),
-        .rd_data_i(rd_data_exwb)
+        .rd_data_i(rd_data_exwb),
+        // Register file
+        .wb_o(wb_wbreg), .wbr_num_o(wbr_num_wbreg),
+        .wb_data_o(wb_data_wbreg)
     );
 endmodule
 
