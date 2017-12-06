@@ -44,6 +44,24 @@ module test_addx();
                 c.r0_data_regid, c.r1_data_regid, c.reserved_regid);
         $display("WB-->RF: wb %b, wbr_num %h, wb_data %h",
                 c.wb_wbreg, c.wbr_num_wbreg, c.wb_data_wbreg);
+        $display({"Regs:    %h %h %h %h %h %h %h %h\n",
+                  "         %h %h %h %h %h %h %h %h\n"},
+                  c.g_register1.r0.data_o,
+                  c.g_register1.r1.data_o,
+                  c.g_register1.r2.data_o,
+                  c.g_register1.r3.data_o,
+                  c.g_register1.r4.data_o,
+                  c.g_register1.r5.data_o,
+                  c.g_register1.r6.data_o,
+                  c.g_register1.r7.data_o,
+                  c.g_register1.r8.data_o,
+                  c.g_register1.r9.data_o,
+                  c.g_register1.ra.data_o,
+                  c.g_register1.rb.data_o,
+                  c.g_register1.rc.data_o,
+                  c.g_register1.rd.data_o,
+                  c.g_register1.re.data_o,
+                  c.g_register1.rf.data_o);
     end // always @(posedge clk)
 endmodule
 
