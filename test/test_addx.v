@@ -31,7 +31,7 @@ module test_addx();
                 c.v_ifid, c.stall_idif, c.addr_ifmem,
                 c.origaddr_ifid, c.inst_ifid);
         $display({"ID<->EX: v %b, s %b, src %h, dest %h,\n",
-                  "         wb %b, rd_num %h, dopc %h, opc %h, origaddr %h"},
+                  "         wb %b, rd_num %h, dopc %b, opc %h, origaddr %h"},
                 c.v_idex, c.stall_exid, c.src_idex, c.dest_idex,
                 c.wb_idex, c.rd_num_idex, c.dopc_idex, c.opc_idex,
                 c.origaddr_idex);

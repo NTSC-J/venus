@@ -77,6 +77,8 @@ module idecode(
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
+    wire wb = wb_required(opecode);
+    assign w_reserve_o = wb; // TODO: redundant?
 
     assign r0_num_o = rd_num;
     assign r1_num_o = rs_num;
@@ -98,7 +100,7 @@ module idecode(
                 opc_r <= opecode;
                 origaddr_r <= origaddr_i;
                 rd_num_r <= rd_num;
-                wb_r <= wb_required(opecode);
+                wb_r <= wb;
             end
         end
     end
