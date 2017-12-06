@@ -18,8 +18,8 @@ module execute(
 
 `include "include/params.vh"
 `include "ex/modules/inte_mod.v"
-//`include "ex/modules/shift_mod.v"
-//`include "ex/modules/logic_mod.v"
+`include "ex/modules/shift_mod.v"
+`include "ex/modules/logic_mod.v"
 //`include "ex/modules/load_mod.v"
 //`include "ex/modules/store_mod.v"
 //`include "ex/modules/branch_mod.v"
@@ -67,17 +67,17 @@ module execute(
 
     // data: {rd,flags}
     assign inte_data = inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-//    assign shift_data = shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-//    assign logic_data = logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    assign shift_data = shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    assign logic_data = logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    assign load_data = load_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
     wire [`WORD + `W_FLAGS - 1:0] actual_data;
     assign actual_data =
-        ({(`WORD + `W_FLAGS){inte}} & inte_data);
-//        ({(`WORD + `W_FLAGS){shift}} & shift_data) |
-//        ({(`WORD + `W_FLAGS){logic}} & logic_data) |
+        ({(`WORD + `W_FLAGS){inte}} & inte_data) |
+        ({(`WORD + `W_FLAGS){shift}} & shift_data) |
+        ({(`WORD + `W_FLAGS){logic}} & logic_data);
 //        ({(`WORD + `W_FLAGS){load}} & load_data);
 
     always @(posedge clk or negedge rst) begin

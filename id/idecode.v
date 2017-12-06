@@ -78,14 +78,22 @@ module idecode(
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
     wire wb = wb_required(opecode);
-    assign w_reserve_o = wb; // TODO: redundant?
 
+    // connected to RF, without pipeline registers
+    assign w_reserve_o = wb; // TODO: redundant?
     assign r0_num_o = rd_num;
     assign r1_num_o = rs_num;
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             v_r <= 0;
+            src_r <= 0;
+            dest_r <= 0;
+            dopc_r <= 0;
+            opc_r <= 0;
+            origaddr_r <= 0;
+            wb_r <= 0;
+            rd_num_r <= 0;
         end
         else begin
             if (~stall_i) begin

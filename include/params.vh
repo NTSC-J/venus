@@ -29,5 +29,5 @@
 
 `define REG_S 16
 
-`endif
+`endif // _params_vh_
 

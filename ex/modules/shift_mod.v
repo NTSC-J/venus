@@ -1,37 +1,38 @@
 /*
- * EX module for integer ops
+ * EX module for shift ops
  *
  * used by instructions:
- * ADDx
- * SUBX
- * MULx
- * DIVx
- * CMPx
- * ABSx
- * ADCx
- * SBCx
+ * SHLx
+ * SHRx
+ * ASHx
+ * ROLx
+ * RORx
  */
 
 `include "include/mnemonic.vh"
 
-function [`WORD + `W_FLAGS - 1:0] inte_mod;
+function [`WORD + `W_FLAGS - 1:0] shift_mod;
     input [`W_OPC - 1:0] opc_i;
     input [`WORD - 1:0] src_i;
     input [`WORD - 1:0] dest_i;
 
-    reg signed [`WORD:0] temp; // 1bit wider
+    reg signed [`WORD + `WORD - 2:0] temp;
     reg zero, negative, positive, carry, underflow, overflow;
 
     begin
         case (opc_i)
-        `ADDx:
-            temp = src_i + dest_i;
-        `SUBx:
-            temp = dest_i - src_i; // TODO
+        `SHLx:
+            temp = dest_i << src_i;
+        `SHRx:
+            temp = dest_i >> src_i;
+        `ASHx:
+            temp = $signed(dest_i) >>> src_i;
+        // TODO: ROLx, RORx
         default:
             temp = 0;
         endcase
     
+        // TODO
         zero = ~(|temp);
         negative = temp[`WORD - 1];
         positive = ~zero & ~negative;
@@ -40,7 +41,7 @@ function [`WORD + `W_FLAGS - 1:0] inte_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        inte_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        shift_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
     end
 endfunction
 

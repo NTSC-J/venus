@@ -31,7 +31,7 @@ module test_addx();
                 c.v_ifid, c.stall_idif, c.addr_ifmem,
                 c.origaddr_ifid, c.inst_ifid);
         $display({"ID<->EX: v %b, s %b, src %h, dest %h,\n",
-                  "         wb %b, rd_num %h, dopc %b, opc %h, origaddr %h"},
+                  "         wb %b, rd_num %h, dopc %b, opc %b, origaddr %h"},
                 c.v_idex, c.stall_exid, c.src_idex, c.dest_idex,
                 c.wb_idex, c.rd_num_idex, c.dopc_idex, c.opc_idex,
                 c.origaddr_idex);
@@ -45,7 +45,7 @@ module test_addx();
         $display("WB-->RF: wb %b, wbr_num %h, wb_data %h",
                 c.wb_wbreg, c.wbr_num_wbreg, c.wb_data_wbreg);
         $display({"Regs:    %h %h %h %h %h %h %h %h\n",
-                  "         %h %h %h %h %h %h %h %h\n"},
+                  "         %h %h %h %h %h %h %h %h"},
                   c.g_register1.r0.data_o,
                   c.g_register1.r1.data_o,
                   c.g_register1.r2.data_o,
@@ -62,6 +62,7 @@ module test_addx();
                   c.g_register1.rd.data_o,
                   c.g_register1.re.data_o,
                   c.g_register1.rf.data_o);
+        $display("Status:  %b", c.execute1.flags);
     end // always @(posedge clk)
 endmodule
 
