@@ -27,9 +27,11 @@ module test_addx();
         $display("###### cycle ######");
         $display("IF:      branch_i %b, baddr_i %h",
                 c.ifetch1.branch_i, c.ifetch1.baddr_i);
-        $display("IF<->ID: v %b, s %b, addr %h, origaddr %h, inst %h",
+        $display("IF<->ID: v %b, s %b, addr %h, origaddr %h",
                 c.v_ifid, c.stall_idif, c.addr_ifmem,
-                c.origaddr_ifid, c.inst_ifid);
+                c.origaddr_ifid);
+        $display("IM-->ID: inst %h",
+                c.inst_memid);
         $display({"ID<->EX: v %b, s %b, src %h, dest %h,\n",
                   "         wb %b, rd_num %h, dopc %b, opc %b, origaddr %h"},
                 c.v_idex, c.stall_exid, c.src_idex, c.dest_idex,

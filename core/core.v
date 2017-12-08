@@ -14,7 +14,7 @@ module core(clk, rst);
     wire stall_idif, stall_exid, stall_wbex;
     // wires for IF, ID stages
     wire [`ADDR - 1:0] addr_ifmem, origaddr_ifid;
-    wire [`WORD - 1:0] inst_memif, inst_ifid;
+    wire [`WORD - 1:0] inst_memid;
     // wires for ID, EX stages
     wire [`WORD - 1:0] src_idex, dest_idex;
     wire wb_idex;
@@ -50,21 +50,20 @@ module core(clk, rst);
     );
     ifetch ifetch1(
         .clk(clk), .rst(rst),
-        .inst_i(inst_memif), .inst_o(inst_ifid),
         .branch_i(1'b0), .baddr_i({`ADDR{1'b0}}),
         .addr_o(addr_ifmem), .origaddr_o(origaddr_ifid),
         .stall_i(stall_idif), .v_o(v_ifid)
     );
     // instruction memory
     DP_mem32x64k imem(
-        .clk(clk), .A(addr_ifmem), .W(1'b0), .D(), .Q(inst_memif)
+        .clk(clk), .A(addr_ifmem), .W(1'b0), .D(), .Q(inst_memid)
     );
     idecode idecode1(
         // global
         .clk(clk), .rst(rst),
         // IF
         .v_i(v_ifid), .stall_o(stall_idif),
-        .inst_i(inst_ifid), .origaddr_i(origaddr_ifid),
+        .inst_i(inst_memid), .origaddr_i(origaddr_ifid),
         // EX
         .src_o(src_idex), .dest_o(dest_idex),
         .wb_o(wb_idex), .rd_num_o(rd_num_idex),

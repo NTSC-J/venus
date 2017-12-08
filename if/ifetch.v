@@ -1,6 +1,5 @@
 module ifetch(clk, rst,
           v_o,
-          inst_i, inst_o,
           branch_i, baddr_i, addr_o, origaddr_o,
           stall_i);
 
@@ -8,8 +7,6 @@ module ifetch(clk, rst,
 
     input clk, rst;
     output v_o;
-    input [`WORD - 1:0] inst_i;
-    output [`WORD - 1:0] inst_o;
     input branch_i; // whether branch or not
     input [`ADDR - 1:0] baddr_i; // address to branch to
     output [`ADDR - 1:0] addr_o; // address to read next time
@@ -23,7 +20,6 @@ module ifetch(clk, rst,
     
     // connecting registers to output
     assign v_o = v_r;
-    assign inst_o = inst_i;
     assign addr_o = addr_r;
     assign origaddr_o = origaddr_r;
 

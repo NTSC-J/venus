@@ -29,7 +29,7 @@ function [`WORD + `W_STATUS - 1:0] inte_mod;
         `SUBx:
             temp = dest_i - src_i; // TODO
         default:
-            temp = 0;
+            temp = {`WORD{1'b1}}; // DEBUG
         endcase
     
         zero = ~(|temp);
