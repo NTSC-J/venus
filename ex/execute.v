@@ -9,8 +9,7 @@ module execute(
     dopc_i,
     opc_i,
     origaddr_i,
-    // WB
-    stall_i, v_o,
+    // Register file
     wb_o,
     rd_num_o,
     rd_data_o
@@ -35,9 +34,7 @@ module execute(
     input [`W_DOPC - 1:0] dopc_i;
     input [`W_OPC - 1:0] opc_i;
     input [`ADDR - 1:0] origaddr_i;
-    // WB
-    input stall_i;
-    output v_o;
+    // Register file
     output wb_o;
     output [`W_RD - 1:0] rd_num_o;
     output [`WORD - 1:0] rd_data_o;
@@ -53,7 +50,7 @@ module execute(
 
     // connecting registers to output
     assign v_o = v_r;
-    assign stall_o = (v_r & stall_i);
+    assign stall_o = 1'b0; //TODO
     assign wb_o = wb_r;
     assign rd_num_o = rd_num_r;
     assign rd_data_o = rd_data_r;
@@ -79,6 +76,8 @@ module execute(
         ({(`WORD + `W_STATUS){shift}} & shift_data) |
         ({(`WORD + `W_STATUS){logic}} & logic_data);
 //        ({(`WORD + `W_STATUS){load}} & load_data);
+    assign v = v_i; // TODO
+    assign wb = v & wb_i;
     assign rd_data = actual_data[`WORD + `W_STATUS - 1:`W_STATUS];
     assign status = actual_data[`W_STATUS - 1:0];
 
@@ -90,14 +89,12 @@ module execute(
             rd_data_r <= 0;
             status_r <= 0;
         end
-        else begin
-            if (~stall_i) begin
-                v_r <= v_i; //TODO
-                wb_r <= wb_i;
-                rd_num_r <= rd_num_i;
-                rd_data_r <= rd_data;
-                status_r <= status;
-            end
+        else begin // no stall because this is the last stage
+            v_r <= v;
+            wb_r <= wb;
+            rd_num_r <= rd_num_i;
+            rd_data_r <= rd_data;
+            status_r <= status;
         end
     end
 endmodule

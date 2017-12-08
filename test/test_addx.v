@@ -37,15 +37,12 @@ module test_addx();
                 c.v_idex, c.stall_exid, c.src_idex, c.dest_idex,
                 c.wb_idex, c.rd_num_idex, c.dopc_idex, c.opc_idex,
                 c.origaddr_idex);
-        $display("EX<->WB: v %b, s %b, wb %b, rd_num %h, rd_data %h",
-                c.v_exwb, c.stall_wbex, c.wb_exwb, c.rd_num_exwb,
-                c.rd_data_exwb);
         $display({"ID<->RF: w_reserve %b, r0_num %h, r1_num %h,\n",
                   "         r0_data %h, r1_data %h, reserved %h"},
                 c.w_reserve_idreg, c.r0_num_idreg, c.r1_num_idreg,
                 c.r0_data_regid, c.r1_data_regid, c.reserved_regid);
-        $display("WB-->RF: wb %b, wbr_num %h, wb_data %h",
-                c.wb_wbreg, c.wbr_num_wbreg, c.wb_data_wbreg);
+        $display("EX-->RF: wb %b, rd_num %h, rd_data %h",
+                c.wb_exreg, c.rd_num_exreg, c.rd_data_exreg);
         $display({"Regs:    %h %h %h %h %h %h %h %h\n",
                   "         %h %h %h %h %h %h %h %h"},
                   c.g_register1.r0.data_o,
