@@ -22,6 +22,7 @@ module execute(
 //`include "ex/modules/load_mod.v"
 //`include "ex/modules/store_mod.v"
 //`include "ex/modules/branch_mod.v"
+`define W_DATA (`WORD + `W_STATUS)
 
     // global
     input clk, rst;
@@ -55,31 +56,33 @@ module execute(
     assign rd_num_o = rd_num_r;
     assign rd_data_o = rd_data_r;
 
-    assign inte   = dopc_i[`W_DOPC - 1];
-    assign shift  = dopc_i[`W_DOPC - 2];
-    assign logic  = dopc_i[`W_DOPC - 3];
-    assign load   = dopc_i[`W_DOPC - 4];
-    assign store  = dopc_i[`W_DOPC - 5];
-    assign branch = dopc_i[`W_DOPC - 6];
+    wire inte   = dopc_i[`W_DOPC - 1];
+    wire shift  = dopc_i[`W_DOPC - 2];
+    wire logic  = dopc_i[`W_DOPC - 3];
+    wire load   = dopc_i[`W_DOPC - 4];
+    wire store  = dopc_i[`W_DOPC - 5];
+    wire branch = dopc_i[`W_DOPC - 6];
 
     // data: {rd,flags}
-    assign inte_data = inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    assign shift_data = shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
-    assign logic_data = logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] inte_data =
+        inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] shift_data =
+        shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] logic_data =
+        logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    assign load_data = load_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
-    wire [`WORD + `W_STATUS - 1:0] actual_data;
-    assign actual_data =
-        ({(`WORD + `W_STATUS){inte}} & inte_data) |
-        ({(`WORD + `W_STATUS){shift}} & shift_data) |
-        ({(`WORD + `W_STATUS){logic}} & logic_data);
-//        ({(`WORD + `W_STATUS){load}} & load_data);
-    assign v = v_i; // TODO
-    assign wb = v & wb_i;
-    assign rd_data = actual_data[`WORD + `W_STATUS - 1:`W_STATUS];
-    assign status = actual_data[`W_STATUS - 1:0];
+    wire [`W_DATA - 1:0] actual_data =
+        ({`W_DATA{inte}} & inte_data) |
+        ({`W_DATA{shift}} & shift_data) |
+        ({`W_DATA{logic}} & logic_data);
+//        ({`W_DATA{load}} & load_data);
+    wire v = v_i; // TODO
+    wire wb = v & wb_i;
+    wire [`WORD - 1:0] rd_data = actual_data[`W_DATA - 1:`W_STATUS];
+    wire [`W_STATUS - 1:0] status = actual_data[`W_STATUS - 1:0];
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin

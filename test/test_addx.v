@@ -62,6 +62,7 @@ module test_addx();
                   c.g_register1.re.data_o,
                   c.g_register1.rf.data_o);
         $display("Status:  %b", c.execute1.status_r);
+        $display("DATA:    %h", c.execute1.actual_data);
     end // always @(posedge clk)
 endmodule
 
