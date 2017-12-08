@@ -1,47 +1,35 @@
 // decode opecode
+
+`include "include/mnemonic.vh"
 // dopc = {inte, shift, logic, load, store, branch}
 function [`W_DOPC - 1:0] decode_ope;
     input [6:0] opecode;
     case (opecode) // synopsis parallel_case
         // integer
-        7'b000_0000,
-        7'b000_0001,
-        7'b000_0010,
-        7'b000_0011,
-        7'b000_0100,
-        7'b000_0101,
-        7'b000_0110,
-        7'b000_0111:
+        `ADDx, `SUBx, `MULx, `DIVx, `CMPx, `ABSx, `ADCx, `SBCx:
             decode_ope = 11'b100000;
 
-        // shift
-        7'b000_1000,
-        7'b000_1001,
-        7'b000_1010,
-        7'b000_1011,
-        7'b000_1100,
-        7'b000_1101:
+        // shift/rotate
+        `SHLx, `SHRx, `ASHx, `ROLx, `RORx:
             decode_ope = 11'b010000;
             
         // logic
-        7'b001_0000,
-        7'b001_0001,
-        7'b001_0010,
-        7'b001_0011:
+        `AND, `OR, `NOT, `XOR:
             decode_ope = 11'b001000;
 
+        // set
         // load
-        7'b001_1000:
+        `LD:
             decode_ope = 11'b000100;
 
         // store
-        7'b001_1001:
+        `ST:
             decode_ope = 11'b000010;
 
         // branch
-        7'b001_1100,
-        7'b001_1101:
+        `J, `JA:
             decode_ope = 11'b000001;
+        // other
 
         default:
             decode_ope = 11'b000000;
