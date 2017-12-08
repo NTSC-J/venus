@@ -13,10 +13,12 @@ clean:
 	$(MAKE) -C util clean
 	$(MAKE) -C reg clean
 	rm -rf csrc simv.daidir ucli.key simv
+	rm mem/mem.dat
 
 test_if: test/test_if.v test/test_if_top.v if/*.v
 	vcs $^
 	
 test_addx: gencode
+	ln -sf addx.dat mem/mem.dat
 	vcs test/test_addx.v build.v 
 
