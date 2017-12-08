@@ -44,18 +44,18 @@ module execute(
 
     // pipeline registers
     reg v_r;
-    reg [`W_RD - 1:0] rd_num_r;
     reg wb_r;
+    reg [`W_RD - 1:0] rd_num_r;
     reg [`WORD - 1:0] rd_data_r;
 
     // internal register
-    reg [`W_FLAGS - 1:0] flags;
+    reg [`W_STATUS - 1:0] status_r;
 
     // connecting registers to output
     assign v_o = v_r;
     assign stall_o = (v_r & stall_i);
-    assign rd_num_o = rd_num_r;
     assign wb_o = wb_r;
+    assign rd_num_o = rd_num_r;
     assign rd_data_o = rd_data_r;
 
     assign inte   = dopc_i[`W_DOPC - 1];
@@ -73,28 +73,30 @@ module execute(
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
-    wire [`WORD + `W_FLAGS - 1:0] actual_data;
+    wire [`WORD + `W_STATUS - 1:0] actual_data;
     assign actual_data =
-        ({(`WORD + `W_FLAGS){inte}} & inte_data) |
-        ({(`WORD + `W_FLAGS){shift}} & shift_data) |
-        ({(`WORD + `W_FLAGS){logic}} & logic_data);
-//        ({(`WORD + `W_FLAGS){load}} & load_data);
+        ({(`WORD + `W_STATUS){inte}} & inte_data) |
+        ({(`WORD + `W_STATUS){shift}} & shift_data) |
+        ({(`WORD + `W_STATUS){logic}} & logic_data);
+//        ({(`WORD + `W_STATUS){load}} & load_data);
+    assign rd_data = actual_data[`WORD + `W_STATUS - 1:`W_STATUS];
+    assign status = actual_data[`W_STATUS - 1:0];
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             v_r <= 0;
-            rd_num_r <= 0;
             wb_r <= 0;
+            rd_num_r <= 0;
             rd_data_r <= 0;
-            flags <= 0;
+            status_r <= 0;
         end
         else begin
             if (~stall_i) begin
-                v_r <= v_i;
-                rd_num_r <= rd_num_i;
+                v_r <= v_i; //TODO
                 wb_r <= wb_i;
-                rd_data_r <= actual_data[`WORD + `W_FLAGS - 1:`W_FLAGS];
-                flags <= actual_data[`W_FLAGS - 1:0];
+                rd_num_r <= rd_num_i;
+                rd_data_r <= rd_data;
+                status_r <= status;
             end
         end
     end

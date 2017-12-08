@@ -10,7 +10,7 @@
 
 `include "include/mnemonic.vh"
 
-function [`WORD + `W_FLAGS - 1:0] logic_mod;
+function [`WORD + `W_STATUS - 1:0] logic_mod;
     input [`W_OPC - 1:0] opc_i;
     input [`WORD - 1:0] src_i;
     input [`WORD - 1:0] dest_i;
@@ -31,7 +31,7 @@ function [`WORD + `W_FLAGS - 1:0] logic_mod;
             rd = 0;
         endcase
     
-        logic_mod = {rd, `W_FLAGS'b0};
+        logic_mod = {rd, `W_STATUS'b0};
     end
 endfunction
 

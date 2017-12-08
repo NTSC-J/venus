@@ -11,7 +11,7 @@
 
 `include "include/mnemonic.vh"
 
-function [`WORD + `W_FLAGS - 1:0] shift_mod;
+function [`WORD + `W_STATUS - 1:0] shift_mod;
     input [`W_OPC - 1:0] opc_i;
     input [`WORD - 1:0] src_i;
     input [`WORD - 1:0] dest_i;

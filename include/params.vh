@@ -25,7 +25,7 @@
 
 `define W_DOPC 6
 
-`define W_FLAGS 6
+`define W_STATUS 6
 
 `define REG_S 16
 
