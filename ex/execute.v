@@ -21,6 +21,7 @@ module execute(
 `include "ex/modules/abs_mod.v"
 `include "ex/modules/shift_mod.v"
 `include "ex/modules/logic_mod.v"
+`include "ex/modules/set_mod.v"
 //`include "ex/modules/load_mod.v"
 //`include "ex/modules/store_mod.v"
 //`include "ex/modules/branch_mod.v"
@@ -82,6 +83,8 @@ module execute(
         shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] logic_data =
         logic_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] set_data =
+        set_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    assign load_data = load_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
@@ -89,10 +92,11 @@ module execute(
     wire [`W_DATA - 1:0] actual_data =
         ({`W_DATA{addsub}} & addsub_data) |
         ({`W_DATA{mul}} & mul_data) |
-        // div, abs
+        // div
         ({`W_DATA{shift}} & shift_data) |
-        ({`W_DATA{logic}} & logic_data);
-        // set, load, store
+        ({`W_DATA{logic}} & logic_data) |
+        ({`W_DATA{set}} & set_data);
+        // load, store
     wire v = v_i; // TODO
     wire wb = v & wb_i;
     wire [`WORD - 1:0] rd_data = actual_data[`W_DATA - 1:`W_STATUS];
