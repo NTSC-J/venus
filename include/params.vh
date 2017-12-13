@@ -23,7 +23,7 @@
 `define IMM_LSB 0
 `define W_IMM (1 + `IMM_MSB - `IMM_LSB)
 
-`define W_DOPC 6
+`define W_DOPC 12
 
 `define W_STATUS 6
 

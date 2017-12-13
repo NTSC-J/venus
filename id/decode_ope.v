@@ -5,34 +5,32 @@
 function [`W_DOPC - 1:0] decode_ope;
     input [6:0] opecode;
     case (opecode) // synopsis parallel_case
-        // integer
-        `ADDx, `SUBx, `MULx, `DIVx, `CMPx, `ABSx, `ADCx, `SBCx:
-            decode_ope = 11'b100000;
-
-        // shift/rotate
+        `ADDx, `SUBx, `CMPx, `ADCx, `SBCx:
+            decode_ope = `W_DOPC'b100000000000;
+        `MULx:
+            decode_ope = `W_DOPC'b010000000000;
+        `DIVx:
+            decode_ope = `W_DOPC'b001000000000;
+        `ABSx:
+            decode_ope = `W_DOPC'b000100000000;
         `SHLx, `SHRx, `ASHx, `ROLx, `RORx:
-            decode_ope = 11'b010000;
-            
-        // logic
+            decode_ope = `W_DOPC'b000010000000;
         `AND, `OR, `NOT, `XOR:
-            decode_ope = 11'b001000;
-
-        // set
-        // load
+            decode_ope = `W_DOPC'b000001000000;
+        `SETL, `SETH:
+            decode_ope = `W_DOPC'b000000100000;
         `LD:
-            decode_ope = 11'b000100;
-
-        // store
+            decode_ope = `W_DOPC'b000000010000;
         `ST:
-            decode_ope = 11'b000010;
-
-        // branch
+            decode_ope = `W_DOPC'b000000001000;
         `J, `JA:
-            decode_ope = 11'b000001;
-        // other
-
+            decode_ope = `W_DOPC'b000000000100;
+        `NOP:
+            decode_ope = `W_DOPC'b000000000010;
+        `HLT:
+            decode_ope = `W_DOPC'b000000000001;
         default:
-            decode_ope = 11'b000000;
+            decode_ope = `W_DOPC'b000000000000;
     endcase
 endfunction
 

@@ -16,7 +16,8 @@ module execute(
 );
 
 `include "include/params.vh"
-`include "ex/modules/inte_mod.v"
+`include "ex/modules/addsub_mod.v"
+`include "ex/modules/mul_mod.v"
 `include "ex/modules/shift_mod.v"
 `include "ex/modules/logic_mod.v"
 //`include "ex/modules/load_mod.v"
@@ -56,16 +57,24 @@ module execute(
     assign rd_num_o = rd_num_r;
     assign rd_data_o = rd_data_r;
 
-    wire inte   = dopc_i[`W_DOPC - 1];
-    wire shift  = dopc_i[`W_DOPC - 2];
-    wire logic  = dopc_i[`W_DOPC - 3];
-    wire load   = dopc_i[`W_DOPC - 4];
-    wire store  = dopc_i[`W_DOPC - 5];
-    wire branch = dopc_i[`W_DOPC - 6];
+    wire addsub = dopc_i[`W_DOPC - 1];
+    wire mul    = dopc_i[`W_DOPC - 2];
+    wire div    = dopc_i[`W_DOPC - 3];
+    wire abs    = dopc_i[`W_DOPC - 4];
+    wire shift  = dopc_i[`W_DOPC - 5];
+    wire logic  = dopc_i[`W_DOPC - 6];
+    wire set    = dopc_i[`W_DOPC - 7];
+    wire load   = dopc_i[`W_DOPC - 8];
+    wire store  = dopc_i[`W_DOPC - 9];
+    wire branch = dopc_i[`W_DOPC - 10];
+    wire nop    = dopc_i[`W_DOPC - 11];
+    wire halt   = dopc_i[`W_DOPC - 12];
 
     // data: {rd,flags}
-    wire [`W_DATA - 1:0] inte_data =
-        inte_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] addsub_data =
+        addsub_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] mul_data =
+        mul_mod(.src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] shift_data =
         shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] logic_data =
@@ -75,10 +84,12 @@ module execute(
 //    branch_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
 
     wire [`W_DATA - 1:0] actual_data =
-        ({`W_DATA{inte}} & inte_data) |
+        ({`W_DATA{addsub}} & addsub_data) |
+        ({`W_DATA{mul}} & mul_data) |
+        // div, abs
         ({`W_DATA{shift}} & shift_data) |
         ({`W_DATA{logic}} & logic_data);
-//        ({`W_DATA{load}} & load_data);
+        // set, load, store
     wire v = v_i; // TODO
     wire wb = v & wb_i;
     wire [`WORD - 1:0] rd_data = actual_data[`W_DATA - 1:`W_STATUS];

@@ -1,37 +1,39 @@
 /*
- * EX module for integer ops
+ * EX module for ADD/SUB
  *
  * used by instructions:
- * ADDx
- * SUBX
- * MULx
- * DIVx
- * CMPx
- * ABSx
- * ADCx
- * SBCx
+ * ADDx (signed addition)
+ * SUBx (signed subtraction)
+ * CMPx (comparison, no rd writeback)
+ *
+ * not implemented:
+ * ADCx (add with carry)
+ * SBCx (subtract with borrow)
  */
 
 `include "include/mnemonic.vh"
 
-function [`WORD + `W_STATUS - 1:0] inte_mod;
+function [`WORD + `W_STATUS - 1:0] addsub_mod;
     input [`W_OPC - 1:0] opc_i;
     input [`WORD - 1:0] src_i;
     input [`WORD - 1:0] dest_i;
 
     reg signed [`WORD:0] temp; // 1bit wider
     reg zero, negative, positive, carry, underflow, overflow;
+    reg minus;
 
     begin
         case (opc_i)
         `ADDx:
-            temp = src_i + dest_i;
-        `SUBx:
-            temp = dest_i - src_i; // TODO
+            minus = 1'b0;
+        `SUBx, `CMPx:
+            minus = 1'b1;
         default:
-            temp = {`WORD{1'b1}}; // DEBUG
+            minus = 1'bx;
         endcase
-    
+
+        temp = minus + dest_i + (minus ? ~src_i : src_i);
+
         zero = ~(|temp);
         negative = temp[`WORD - 1];
         positive = ~zero & ~negative;
@@ -40,7 +42,7 @@ function [`WORD + `W_STATUS - 1:0] inte_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        inte_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        addsub_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
     end
 endfunction
 
