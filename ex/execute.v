@@ -18,6 +18,7 @@ module execute(
 `include "include/params.vh"
 `include "ex/modules/addsub_mod.v"
 `include "ex/modules/mul_mod.v"
+`include "ex/modules/abs_mod.v"
 `include "ex/modules/shift_mod.v"
 `include "ex/modules/logic_mod.v"
 //`include "ex/modules/load_mod.v"
@@ -75,6 +76,8 @@ module execute(
         addsub_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] mul_data =
         mul_mod(.src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] abs_data =
+        abs_mod(.src_i(src_i));
     wire [`W_DATA - 1:0] shift_data =
         shift_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] logic_data =
