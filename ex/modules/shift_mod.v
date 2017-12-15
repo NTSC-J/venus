@@ -41,7 +41,7 @@ function [`WORD + `W_STATUS - 1:0] shift_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        shift_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        shift_mod = {temp[`WORD - 1:0], zero, positive, negative, carry, overflow, underflow};
     end
 endfunction
 

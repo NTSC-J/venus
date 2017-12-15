@@ -24,7 +24,7 @@ function [`WORD + `W_STATUS - 1:0] abs_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        abs_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        abs_mod = {temp[`WORD - 1:0], zero, positive, negative, carry, overflow, underflow};
     end
 endfunction
 

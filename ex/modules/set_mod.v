@@ -34,7 +34,7 @@ function [`WORD + `W_STATUS - 1:0] set_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        set_mod = {temp, zero, positive, carry, overflow, underflow};
+        set_mod = {temp, zero, positive, negative, carry, overflow, underflow};
     end
 endfunction
 

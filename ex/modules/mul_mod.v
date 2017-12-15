@@ -27,7 +27,7 @@ function [`WORD + `W_STATUS - 1:0] mul_mod;
             overflow = |(~temp[`WORD * 2 - 1:`WORD]);
         underflow = 1'b0;
     
-        mul_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        mul_mod = {temp[`WORD - 1:0], zero, positive, negative, carry, overflow, underflow};
     end
 endfunction
 
