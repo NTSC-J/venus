@@ -25,9 +25,17 @@
 
 `define W_DOPC 12
 
-`define W_STATUS 6
+`define W_STATUS      6
+`define ZERO_BIT      5
+`define POSITIVE_BIT  4
+`define NEGATIVE_BIT  3
+`define CARRY_BIT     2
+`define OVERFLOW_BIT  1
+`define UNDERFLOW_BIT 0
 
 `define REG_S 16
+
+`define W_CC 3
 
 `endif // _params_vh_
 

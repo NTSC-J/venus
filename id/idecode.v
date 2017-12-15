@@ -12,6 +12,7 @@ module idecode(
     dopc_o,             // decoded opecode
     opc_o,              // raw opecode
     origaddr_o,
+    cc_o,
     stall_i, v_o,
     // register file
     w_reserve_o,
@@ -39,6 +40,7 @@ module idecode(
     output [`W_DOPC - 1:0] dopc_o;
     output [`W_OPC - 1:0] opc_o;
     output [`ADDR - 1:0] origaddr_o;
+    output [`W_CC - 1:0] cc_o;
     output v_o;
     input stall_i;
     // register file
@@ -54,6 +56,7 @@ module idecode(
     reg [`W_DOPC - 1:0] dopc_r;
     reg [`W_OPC - 1:0] opc_r;
     reg [`ADDR - 1:0] origaddr_r;
+    reg [`W_CC - 1:0] cc_r;
     reg wb_r;
     reg [`W_RD - 1:0] rd_num_r;
 
@@ -66,6 +69,7 @@ module idecode(
     assign dopc_o = dopc_r;
     assign opc_o = opc_r;
     assign origaddr_o = origaddr_r;
+    assign cc_o = cc_r;
     assign wb_o = wb_r;
     assign rd_num_o = rd_num_r;
 
@@ -73,6 +77,7 @@ module idecode(
     wire [`W_OPC - 1:0] opecode = inst_i[`OPC_MSB:`OPC_LSB];
     wire immf = inst_i[`IMMF_BIT];
     wire [`W_RD - 1:0] rd_num = inst_i[`RD_MSB:`RD_LSB];
+    wire [`W_CC - 1:0] cc = rd_num[`W_CC - 1:0];
     wire [`W_RS - 1:0] rs_num = inst_i[`RS_MSB:`RS_LSB];
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
 
@@ -92,6 +97,7 @@ module idecode(
             dopc_r <= 0;
             opc_r <= 0;
             origaddr_r <= 0;
+            cc_r <= 0;
             wb_r <= 0;
             rd_num_r <= 0;
         end
@@ -107,6 +113,7 @@ module idecode(
                 dopc_r <= dopc;
                 opc_r <= opecode;
                 origaddr_r <= origaddr_i;
+                cc_r <= cc;
                 rd_num_r <= rd_num;
                 wb_r <= wb;
             end

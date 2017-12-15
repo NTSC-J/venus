@@ -15,6 +15,9 @@ module core(clk, rst);
     // wires for IF, ID stages
     wire [`ADDR - 1:0] addr_ifmem, origaddr_ifid;
     wire [`WORD - 1:0] inst_memid;
+    // wires for IF, EX stages (jump)
+    wire branch_exif;
+    wire [`ADDR - 1:0] baddr_exif;
     // wires for ID, EX stages
     wire [`WORD - 1:0] src_idex, dest_idex;
     wire wb_idex;
@@ -22,6 +25,7 @@ module core(clk, rst);
     wire [`W_DOPC - 1:0] dopc_idex;
     wire [`W_OPC - 1:0] opc_idex;
     wire [`ADDR - 1:0] origaddr_idex;
+    wire [`W_CC - 1:0] cc_idex;
     // wires to/from the register file
     wire w_reserve_idreg;
     wire [`W_RD - 1:0] r0_num_idreg, r1_num_idreg;
@@ -45,9 +49,12 @@ module core(clk, rst);
         .wb_data_i(rd_data_exreg)
     );
     ifetch ifetch1(
+        // global
         .clk(clk), .rst(rst),
-        .branch_i(1'b0), .baddr_i({`ADDR{1'b0}}),
+        // ID
         .addr_o(addr_ifmem), .origaddr_o(origaddr_ifid),
+        // EX
+        .branch_i(branch_exif), .baddr_i(baddr_exif),
         .stall_i(stall_idif), .v_o(v_ifid)
     );
     // instruction memory
@@ -65,6 +72,7 @@ module core(clk, rst);
         .wb_o(wb_idex), .rd_num_o(rd_num_idex),
         .dopc_o(dopc_idex), .opc_o(opc_idex),
         .origaddr_o(origaddr_idex),
+        .cc_o(cc_idex),
         .stall_i(stall_exid), .v_o(v_idex),
         // Register file
         .w_reserve_o(w_reserve_idreg),
@@ -75,12 +83,15 @@ module core(clk, rst);
     execute execute1(
         // global
         .clk(clk), .rst(rst),
+        // IF
+        .branch_o(branch_exif), .baddr_o(baddr_exif),
         // ID
         .v_i(v_idex), .stall_o(stall_exid),
         .src_i(src_idex), .dest_i(dest_idex),
         .wb_i(wb_idex), .rd_num_i(rd_num_idex),
         .dopc_i(dopc_idex), .opc_i(opc_idex),
         .origaddr_i(origaddr_idex),
+        .cc_i(cc_idex),
         // Register file
         .wb_o(wb_exreg), .rd_num_o(rd_num_exreg),
         .rd_data_o(rd_data_exreg)
