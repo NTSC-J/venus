@@ -42,7 +42,7 @@ function [`WORD + `W_STATUS - 1:0] addsub_mod;
         overflow = 1'b0;
         underflow = 1'b0;
     
-        addsub_mod = {temp[`WORD - 1:0], zero, positive, carry, overflow, underflow};
+        addsub_mod = {temp[`WORD - 1:0], zero, positive, negative, carry, overflow, underflow};
     end
 endfunction
 

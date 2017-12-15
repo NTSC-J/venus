@@ -16,7 +16,7 @@ clean:
 	rm mem/mem.dat
 
 test_if: test/test_if.v test/test_if_top.v if/*.v
-	vcs $^
+	vcs +warn=all $^
 	
 test_addx: gencode
 	ln -sf addx.dat mem/mem.dat
