@@ -82,6 +82,7 @@ module idecode(
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
+    wire may_jump = dopc[`DJUMP];
     wire wb = wb_required(opecode);
 
     // connected to RF, without pipeline registers

@@ -22,3 +22,7 @@ test_addx: gencode
 	ln -sf addx.dat mem/mem.dat
 	vcs test/test_addx.v build.v 
 
+test_loop: gencode
+	ln -sf loop.dat mem/mem.dat
+	vcs test/test_loop.v build.v
+

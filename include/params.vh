@@ -23,7 +23,19 @@
 `define IMM_LSB 0
 `define W_IMM (1 + `IMM_MSB - `IMM_LSB)
 
-`define W_DOPC 12
+`define W_DOPC  12
+`define DADDSUB 11
+`define DMUL    10
+`define DDIV     9
+`define DABS     8
+`define DSHIFT   7
+`define DLOGIC   6
+`define DSET     5
+`define DLOAD    4
+`define DSTORE   3
+`define DJUMP    2
+`define DNOP     1
+`define DHALT    0
 
 `define W_STATUS      6
 `define ZERO_BIT      5

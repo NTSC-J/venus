@@ -56,16 +56,10 @@ module execute(
     reg wb_r;
     reg [`W_RD - 1:0] rd_num_r;
     reg [`WORD - 1:0] rd_data_r;
+    reg stall_r;
 
     // internal register
     reg [`W_STATUS - 1:0] status_r;
-
-    // connecting registers to output
-    assign v_o = v_r;
-    assign stall_o = 1'b0; //TODO
-    assign wb_o = wb_r;
-    assign rd_num_o = rd_num_r;
-    assign rd_data_o = rd_data_r;
 
     wire addsub = dopc_i[`W_DOPC - 1];
     wire mul    = dopc_i[`W_DOPC - 2];
@@ -76,9 +70,16 @@ module execute(
     wire set    = dopc_i[`W_DOPC - 7];
     wire load   = dopc_i[`W_DOPC - 8];
     wire store  = dopc_i[`W_DOPC - 9];
-    wire branch = dopc_i[`W_DOPC - 10]; // FIXME: unused
+    wire jump   = dopc_i[`W_DOPC - 10];
     wire nop    = dopc_i[`W_DOPC - 11]; // FIXME: unused
     wire halt   = dopc_i[`W_DOPC - 12];
+
+    // connecting registers to output
+    assign v_o = v_r;
+    assign wb_o = wb_r;
+    assign rd_num_o = rd_num_r;
+    assign rd_data_o = rd_data_r;
+    assign stall_o = stall_r;
 
     // data: {rd,flags}
     wire [`W_DATA - 1:0] addsub_data =
@@ -97,7 +98,7 @@ module execute(
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`ADDR:0] jump_data =
         jump_mod(.opc_i(opc_i), .cc_i(cc_i), .src_i(src_i), .origaddr_i(origaddr_i), .status_i(status_r));
-    assign branch_o = jump_data[`ADDR];
+    assign branch_o = jump & jump_data[`ADDR];
     assign baddr_o = jump_data[`ADDR - 1:0];
 
     wire [`W_DATA - 1:0] actual_data =
@@ -120,6 +121,7 @@ module execute(
             rd_num_r <= 0;
             rd_data_r <= 0;
             status_r <= 0;
+            stall_r <= 0;
         end
         else begin // no stall because this is the last stage
             v_r <= v;
@@ -127,6 +129,8 @@ module execute(
             rd_num_r <= rd_num_i;
             rd_data_r <= rd_data;
             status_r <= status;
+            if (halt)
+                stall_r <= 1'b1;
         end
     end
 endmodule
