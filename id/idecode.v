@@ -60,7 +60,6 @@ module idecode(
 
     // connecting registers to output
     assign v_o = v_r;
-    assign stall_o = (v_r & stall_i) | rd_reserved_i | rs_reserved_i; // TODO: when using imm
     assign src_o = src_r;
     assign dest_o = dest_r;
     assign dopc_o = dopc_r;
@@ -79,9 +78,9 @@ module idecode(
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
-    wire may_jump = dopc[`DJUMP];
     wire wb = wb_required(opecode);
 
+    assign stall_o = v_r & (stall_i | rd_reserved_i | (~immf & rs_reserved_i));
     // connected to RF, without pipeline registers
     assign w_reserve_o = wb; // TODO: redundant?
     assign rd_name_o = rd_name;

@@ -32,9 +32,9 @@ module test_run();
                 c.origaddr_ifid);
         $display("IM-->ID: inst %h",
                 c.inst_memid);
-        $display({"ID<->EX: v %b, s %b, src %h, dest %h,\n",
+        $display({"ID<->EX: v %b, s %b, src %h, dest %h, cc %b,\n",
                   "         wb %b, wb_rd_name %h, dopc %b, opc %b, origaddr %h"},
-                c.v_idex, c.stall_exid, c.src_idex, c.dest_idex,
+                c.v_idex, c.stall_exid, c.src_idex, c.dest_idex, c.cc_idex,
                 c.wb_idex, c.wb_rd_name_idex, c.dopc_idex, c.opc_idex,
                 c.origaddr_idex);
         $display({"ID<->RF: rd_reserve %b, rd_name %h, rs_name %h,\n",
@@ -64,6 +64,7 @@ module test_run();
                   c.register_file1.rf.data_o);
         $display("Status:  %b", c.execute1.status_r);
         $display("DATA:    %b", c.execute1.actual_data);
+        $display("JDATA:   %b", c.execute1.jump_data);
     end // always @(posedge clk)
 endmodule
 

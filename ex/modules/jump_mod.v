@@ -13,11 +13,12 @@
 function [`ADDR:0] jump_mod;
     input [`W_OPC - 1:0] opc_i;
     input [`W_CC - 1:0] cc_i;
-    input [`WORD - 1:0] src_i;
+    input signed [`WORD - 1:0] src_i;
     input [`ADDR - 1:0] origaddr_i;
     input [`W_STATUS - 1:0] status_i;
 
     reg branch; // whether to branch
+    reg [`ADDR - 1:0] baddr;
 
     begin
         case (cc_i)
@@ -36,14 +37,17 @@ function [`ADDR:0] jump_mod;
         default:
             branch = 1'bx;
         endcase
+
         case (opc_i)
         `J:
-            jump_mod = {branch, origaddr_i + src_i};
+            baddr = origaddr_i + $signed(src_i);
         `JA:
-            jump_mod = {branch, src_i};
+            baddr = src_i;
         default:
-            jump_mod = {(`ADDR + 1){1'b0}};
+            baddr = 0;
         endcase
+
+        jump_mod = {branch, baddr};
     end
 endfunction
 

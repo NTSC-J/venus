@@ -61,19 +61,6 @@ module execute(
     // internal register
     reg [`W_STATUS - 1:0] status_r;
 
-    wire addsub = dopc_i[`W_DOPC - 1];
-    wire mul    = dopc_i[`W_DOPC - 2];
-    wire div    = dopc_i[`W_DOPC - 3];
-    wire abs    = dopc_i[`W_DOPC - 4];
-    wire shift  = dopc_i[`W_DOPC - 5];
-    wire logic  = dopc_i[`W_DOPC - 6];
-    wire set    = dopc_i[`W_DOPC - 7];
-    wire load   = dopc_i[`W_DOPC - 8];
-    wire store  = dopc_i[`W_DOPC - 9];
-    wire jump   = dopc_i[`W_DOPC - 10];
-    wire nop    = dopc_i[`W_DOPC - 11]; // FIXME: unused
-    wire halt   = dopc_i[`W_DOPC - 12];
-
     // connecting registers to output
     assign v_o = v_r;
     assign wb_o = wb_r;
@@ -98,16 +85,17 @@ module execute(
 //    store_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`ADDR:0] jump_data =
         jump_mod(.opc_i(opc_i), .cc_i(cc_i), .src_i(src_i), .origaddr_i(origaddr_i), .status_i(status_r));
-    assign branch_o = jump & jump_data[`ADDR];
+    assign branch_o = dopc_i[`DJUMP] & jump_data[`ADDR];
     assign baddr_o = jump_data[`ADDR - 1:0];
 
     wire [`W_DATA - 1:0] actual_data =
-        ({`W_DATA{addsub}} & addsub_data) |
-        ({`W_DATA{mul}} & mul_data) |
+        ({`W_DATA{dopc_i[`DADDSUB]}} & addsub_data) |
+        ({`W_DATA{dopc_i[`DMUL]}}    & mul_data)    |
         // div
-        ({`W_DATA{shift}} & shift_data) |
-        ({`W_DATA{logic}} & logic_data) |
-        ({`W_DATA{set}} & set_data);
+        ({`W_DATA{dopc_i[`DABS]}}    & abs_data)    |
+        ({`W_DATA{dopc_i[`DSHIFT]}}  & shift_data)  |
+        ({`W_DATA{dopc_i[`DLOGIC]}}  & logic_data)  |
+        ({`W_DATA{dopc_i[`DSET]}}    & set_data);
         // load, store
     wire v = v_i; // TODO
     wire wb = v & wb_i;
@@ -129,7 +117,7 @@ module execute(
             wb_rd_name_r <= wb_rd_name_i;
             wb_rd_data_r <= wb_rd_data;
             status_r <= status;
-            if (halt)
+            if (dopc_i[`DHALT])
                 stall_r <= 1'b1;
         end
     end
