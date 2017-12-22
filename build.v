@@ -3,7 +3,7 @@
  */
 
 `include "reg/register_cell.v"
-`include "reg/g_register.v"
+`include "reg/register_file.v"
 `include "if/DP_mem32x64k.v"
 `include "if/ifetch.v"
 `include "id/idecode.v"

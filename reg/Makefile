@@ -1,6 +1,6 @@
 all:
-	./g_register.pl > g_register.v
+	./register_file.pl > register_file.v
 
 clean:
-	rm -f g_register.v
+	rm -f register_file.v
 

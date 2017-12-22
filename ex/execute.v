@@ -8,15 +8,15 @@ module execute(
     v_i, stall_o,
     src_i, dest_i,
     wb_i,
-    rd_num_i,
+    wb_rd_name_i,
     dopc_i,
     opc_i,
     origaddr_i,
     cc_i,
     // Register file
     wb_o,
-    rd_num_o,
-    rd_data_o
+    wb_rd_name_o,
+    wb_rd_data_o
 );
 
 `include "include/params.vh"
@@ -41,21 +41,21 @@ module execute(
     output stall_o;
     input [`WORD -1:0] src_i, dest_i;
     input wb_i;
-    input [`W_RD - 1:0] rd_num_i;
+    input [`W_RD - 1:0] wb_rd_name_i;
     input [`W_DOPC - 1:0] dopc_i;
     input [`W_OPC - 1:0] opc_i;
     input [`ADDR - 1:0] origaddr_i;
     input [`W_CC - 1:0] cc_i;
     // Register file
     output wb_o;
-    output [`W_RD - 1:0] rd_num_o;
-    output [`WORD - 1:0] rd_data_o;
+    output [`W_RD - 1:0] wb_rd_name_o;
+    output [`WORD - 1:0] wb_rd_data_o;
 
     // pipeline registers
     reg v_r;
     reg wb_r;
-    reg [`W_RD - 1:0] rd_num_r;
-    reg [`WORD - 1:0] rd_data_r;
+    reg [`W_RD - 1:0] wb_rd_name_r;
+    reg [`WORD - 1:0] wb_rd_data_r;
     reg stall_r;
 
     // internal register
@@ -77,8 +77,8 @@ module execute(
     // connecting registers to output
     assign v_o = v_r;
     assign wb_o = wb_r;
-    assign rd_num_o = rd_num_r;
-    assign rd_data_o = rd_data_r;
+    assign wb_rd_name_o = wb_rd_name_r;
+    assign wb_rd_data_o = wb_rd_data_r;
     assign stall_o = stall_r;
 
     // data: {rd,flags}
@@ -111,23 +111,23 @@ module execute(
         // load, store
     wire v = v_i; // TODO
     wire wb = v & wb_i;
-    wire [`WORD - 1:0] rd_data = actual_data[`W_DATA - 1:`W_STATUS];
+    wire [`WORD - 1:0] wb_rd_data = actual_data[`W_DATA - 1:`W_STATUS];
     wire [`W_STATUS - 1:0] status = actual_data[`W_STATUS - 1:0];
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             v_r <= 0;
             wb_r <= 0;
-            rd_num_r <= 0;
-            rd_data_r <= 0;
+            wb_rd_name_r <= 0;
+            wb_rd_data_r <= 0;
             status_r <= 0;
             stall_r <= 0;
         end
         else begin // no stall because this is the last stage
             v_r <= v;
             wb_r <= wb;
-            rd_num_r <= rd_num_i;
-            rd_data_r <= rd_data;
+            wb_rd_name_r <= wb_rd_name_i;
+            wb_rd_data_r <= wb_rd_data;
             status_r <= status;
             if (halt)
                 stall_r <= 1'b1;

@@ -21,32 +21,33 @@ module core(clk, rst);
     // wires for ID, EX stages
     wire [`WORD - 1:0] src_idex, dest_idex;
     wire wb_idex;
-    wire [`W_RD - 1:0] rd_num_idex;
+    wire [`W_RD - 1:0] wb_rd_name_idex;
     wire [`W_DOPC - 1:0] dopc_idex;
     wire [`W_OPC - 1:0] opc_idex;
     wire [`ADDR - 1:0] origaddr_idex;
     wire [`W_CC - 1:0] cc_idex;
     // wires to/from the register file
-    wire w_reserve_idreg;
-    wire [`W_RD - 1:0] r0_num_idreg, r1_num_idreg;
-    wire [`WORD - 1:0] r0_data_regid, r1_data_regid;
-    wire reserved_regid;
+    wire rd_reserve_idreg;
+    wire [`W_RD - 1:0] rd_name_idreg, rs_name_idreg;
+    wire [`WORD - 1:0] rd_data_regid, rs_data_regid;
+    wire rd_reserved_regid, rs_reserved_regid;
     wire wb_exreg;
-    wire [`W_RD - 1:0] rd_num_exreg;
-    wire [`WORD - 1:0] rd_data_exreg;
+    wire [`W_RD - 1:0] wb_rd_name_exreg;
+    wire [`WORD - 1:0] wb_rd_data_exreg;
 
-    g_register g_register1(
+    register_file register_file1(
         // global
         .clk(clk), .rst(rst),
         // ID
-        .w_reserve_i(w_reserve_idreg),
-        .r0_num_i(r0_num_idreg), .r1_num_i(r1_num_idreg),
-        .r0_data_o(r0_data_regid), .r1_data_o(r1_data_regid),
-        .reserved_o(reserved_regid),
+        .rd_reserve_i(rd_reserve_idreg),
+        .rd_name_i(rd_name_idreg), .rs_name_i(rs_name_idreg),
+        .rd_data_o(rd_data_regid), .rs_data_o(rs_data_regid),
+        .rd_reserved_o(rd_reserved_regid),
+        .rs_reserved_o(rs_reserved_regid),
         // EX 
         .wb_i(wb_exreg),
-        .wbr_num_i(rd_num_exreg),
-        .wb_data_i(rd_data_exreg)
+        .wb_rd_name_i(wb_rd_name_exreg),
+        .wb_rd_data_i(wb_rd_data_exreg)
     );
     ifetch ifetch1(
         // global
@@ -69,16 +70,17 @@ module core(clk, rst);
         .inst_i(inst_memid), .origaddr_i(origaddr_ifid),
         // EX
         .src_o(src_idex), .dest_o(dest_idex),
-        .wb_o(wb_idex), .rd_num_o(rd_num_idex),
+        .wb_o(wb_idex), .wb_rd_name_o(wb_rd_name_idex),
         .dopc_o(dopc_idex), .opc_o(opc_idex),
         .origaddr_o(origaddr_idex),
         .cc_o(cc_idex),
         .stall_i(stall_exid), .v_o(v_idex),
         // Register file
-        .w_reserve_o(w_reserve_idreg),
-        .r0_num_o(r0_num_idreg), .r1_num_o(r1_num_idreg),
-        .r0_data_i(r0_data_regid), .r1_data_i(r1_data_regid),
-        .reserved_i(reserved_regid)
+        .rd_reserve_o(rd_reserve_idreg),
+        .rd_name_o(rd_name_idreg), .rs_name_o(rs_name_idreg),
+        .rd_data_i(rd_data_regid), .rs_data_i(rs_data_regid),
+        .rd_reserved_i(rd_reserved_regid),
+        .rs_reserved_i(rs_reserved_regid)
     );
     execute execute1(
         // global
@@ -88,13 +90,13 @@ module core(clk, rst);
         // ID
         .v_i(v_idex), .stall_o(stall_exid),
         .src_i(src_idex), .dest_i(dest_idex),
-        .wb_i(wb_idex), .rd_num_i(rd_num_idex),
+        .wb_i(wb_idex), .wb_rd_name_i(wb_rd_name_idex),
         .dopc_i(dopc_idex), .opc_i(opc_idex),
         .origaddr_i(origaddr_idex),
         .cc_i(cc_idex),
         // Register file
-        .wb_o(wb_exreg), .rd_num_o(rd_num_exreg),
-        .rd_data_o(rd_data_exreg)
+        .wb_o(wb_exreg), .wb_rd_name_o(wb_rd_name_exreg),
+        .wb_rd_data_o(wb_rd_data_exreg)
     );
     // TODO: data memory
 endmodule
