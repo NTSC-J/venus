@@ -1,7 +1,7 @@
 `include "include/params.vh"
 `timescale 1ns/100ps
 
-module test_addx();
+module test_run();
     parameter STEP = 10;
 
     reg clk, rst;
@@ -42,7 +42,7 @@ module test_addx();
                 c.rd_reserve_idreg, c.rd_name_idreg, c.rs_name_idreg,
                 c.rd_data_regid, c.rs_data_regid,
                 c.rd_reserved_regid, c.rs_reserved_regid);
-        $display("EX-->RF: wb %b, rd_num %h, rd_data %h",
+        $display("EX-->RF: wb %b, wb_rd_name %h, wb_rd_data %h",
                 c.wb_exreg, c.wb_rd_name_exreg, c.wb_rd_data_exreg);
         $display({"Regs:    %h %h %h %h %h %h %h %h\n",
                   "         %h %h %h %h %h %h %h %h"},

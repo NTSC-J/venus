@@ -1,9 +1,9 @@
 .PHONY: clean gencode
 
-all: simv
+VCS=vcs +warn=all +error+1000
 
-simv: gencode
-	vcs +error+1000 build.v
+all: gencode test_loop
+	$(VCS) build.v 
 
 gencode:
 	$(MAKE) -C util
@@ -15,14 +15,9 @@ clean:
 	rm -rf csrc simv.daidir ucli.key simv
 	rm mem/mem.dat
 
-test_if: test/test_if.v test/test_if_top.v if/*.v
-	vcs +warn=all $^
-	
 test_addx: gencode
 	ln -sf addx.dat mem/mem.dat
-	vcs test/test_addx.v build.v 
 
 test_loop: gencode
 	ln -sf loop.dat mem/mem.dat
-	vcs test/test_loop.v build.v
 
