@@ -14,31 +14,36 @@ module ifetch(clk, rst,
     input stall_i;
 
     // pipeline registers
-    reg v_r;
     reg [`ADDR - 1:0] addr_r;
     reg [`ADDR - 1:0] origaddr_r;
+
+    // internal registers
+    reg branched_r;
+    reg initialized_r;
     
     // connecting registers to output
-    assign v_o = v_r;
+    assign v_o = ~branch_i && ~branched_r && initialized_r;
     assign addr_o = addr_r;
     assign origaddr_o = origaddr_r;
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
-            v_r <= 0;
+            initialized_r <= 0;
             addr_r <= 0;
             origaddr_r <= 0;
+            branched_r <= 0;
         end
         else begin
             if (~stall_i) begin
                 origaddr_r <= addr_r;
-                if (branch_i == 1'b1) begin
+                initialized_r <= 1'b1;
+                if (branch_i) begin
                     addr_r <= baddr_i;
-                    v_r <= 1'b0;
+                    branched_r <= 1'b1;
                 end
                 else begin
                     addr_r <= addr_r + 1;
-                    v_r <= 1'b1;
+                    branched_r <= 1'b0;
                 end
             end
         end

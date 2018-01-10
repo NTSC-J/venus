@@ -42,13 +42,12 @@ module test_run();
         $write({`RESET_COLOR, "\n"});
 
         if (~c.idecode1.v_i) $write(`WEAK_COLOR);
-        $write("IF-->ID: v %b, addr %h, origaddr %h",
+        $display("IF-->ID: v %b, addr %h, origaddr %h",
                 c.v_ifid, c.addr_ifmem,
                 c.origaddr_ifid);
-        $write({`RESET_COLOR, "\n"});
-
-        $display("IM-->ID: inst %h",
+        $write("IM-->ID: inst %h",
                 c.inst_memid);
+        $write({`RESET_COLOR, "\n"});
 
         if (~c.v_idex) $write(`WEAK_COLOR);
         $write({"ID-->EX: v %b, src %h, dest %h, cc %b,\n",
