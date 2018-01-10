@@ -56,7 +56,7 @@ printf("dataf);\n");
 print << "EOS";
     wire [`REG_S - 1:0] w_reserved;
     wire [`REG_S - 1:0] w_reserve = decode16(rd_name_i) & {`REG_S{rd_reserve_i}};
-    wire [`REG_S - 1:0] wb_r = decode16(wb_rd_name_i) & {16{wb_i}};
+    wire [`REG_S - 1:0] selected_r = decode16(wb_rd_name_i);
     assign rd_reserved_o = |(decode16(rd_name_i) & w_reserved);
     assign rs_reserved_o = |(decode16(rs_name_i) & w_reserved);
 
@@ -68,7 +68,8 @@ for (my $i = 0; $i < 16; $i++) {
            "        .data_o(data%1\$x),\n".
            "        .w_reserve_i(w_reserve[%1\$d]),\n".
            "        .w_reserved_o(w_reserved[%1\$d]),\n".
-           "        .wb_i(wb_r[%1\$d])\n".
+           "        .w_unreserve_i(selected_r[%1\$d]),\n".
+           "        .wb_i(wb_i & selected_r[%1\$d])\n".
            "    );\n", $i);
 }
 print << "EOS";

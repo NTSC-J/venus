@@ -82,7 +82,7 @@ module idecode(
 
     assign stall_o = v_r & (stall_i | rd_reserved_i | (~immf & rs_reserved_i));
     // connected to RF, without pipeline registers
-    assign w_reserve_o = wb; // TODO: redundant?
+    assign rd_reserve_o = wb; // TODO: redundant?
     assign rd_name_o = rd_name;
     assign rs_name_o = rs_name;
 
