@@ -2,7 +2,7 @@
 
 VCS=vcs +warn=all +error+1000
 
-all: gencode test_loop
+all: gencode
 	$(VCS) build.v 
 
 gencode:
@@ -20,4 +20,7 @@ test_addx: gencode
 
 test_loop: gencode
 	ln -sf loop.dat mem/mem.dat
+
+test_interlock: gencode
+	ln -sf interlock.dat mem/mem.dat
 
