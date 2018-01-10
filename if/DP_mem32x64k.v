@@ -23,6 +23,7 @@ module DP_mem32x64k(clk, A, W, D, Q);
       end
 
     initial begin
+        o_reg = `WORD'b0;
         $readmemh("mem/mem.dat", mem_bank);
     end
 endmodule // DP_mem32x64k
