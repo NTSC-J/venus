@@ -52,7 +52,6 @@ module execute(
     output [`WORD - 1:0] wb_rd_data_o;
 
     // pipeline registers
-    reg v_r;
     reg wb_r;
     reg [`W_RD - 1:0] wb_rd_name_r;
     reg [`WORD - 1:0] wb_rd_data_r;
@@ -62,7 +61,6 @@ module execute(
     reg [`W_STATUS - 1:0] status_r;
 
     // connecting registers to output
-    assign v_o = v_r;
     assign wb_o = wb_r;
     assign wb_rd_name_o = wb_rd_name_r;
     assign wb_rd_data_o = wb_rd_data_r;
@@ -97,14 +95,12 @@ module execute(
         ({`W_DATA{dopc_i[`DLOGIC]}}  & logic_data)  |
         ({`W_DATA{dopc_i[`DSET]}}    & set_data);
         // load, store
-    wire v = v_i; // TODO
-    wire wb = v & wb_i;
+    wire wb = v_i & wb_i;
     wire [`WORD - 1:0] wb_rd_data = actual_data[`W_DATA - 1:`W_STATUS];
     wire [`W_STATUS - 1:0] status = actual_data[`W_STATUS - 1:0];
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
-            v_r <= 0;
             wb_r <= 0;
             wb_rd_name_r <= 0;
             wb_rd_data_r <= 0;
@@ -112,7 +108,6 @@ module execute(
             stall_r <= 0;
         end
         else begin // no stall because this is the last stage
-            v_r <= v;
             wb_r <= wb;
             wb_rd_name_r <= wb_rd_name_i;
             wb_rd_data_r <= wb_rd_data;

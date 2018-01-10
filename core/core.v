@@ -10,8 +10,8 @@ module core(clk, rst);
 
     /* wires */
     // wires for basic pipeline ops
-    wire v_ifid, v_idex, v_exwb;
-    wire stall_idif, stall_exid, stall_wbex;
+    wire v_ifid, v_idex;
+    wire stall_idif, stall_exid;
     // wires for IF, ID stages
     wire [`ADDR - 1:0] addr_ifmem, origaddr_ifid;
     wire [`WORD - 1:0] inst_memid;
