@@ -18,11 +18,11 @@ module ifetch(clk, rst,
     reg [`ADDR - 1:0] origaddr_r;
 
     // internal registers
-    reg branched_r;
+    reg bubble_r;
     reg initialized_r;
     
     // connecting registers to output
-    assign v_o = ~branch_i && ~branched_r && initialized_r;
+    assign v_o = ~branch_i && ~bubble_r && initialized_r;
     assign addr_o = addr_r;
     assign origaddr_o = origaddr_r;
 
@@ -30,7 +30,7 @@ module ifetch(clk, rst,
         if (~rst) begin
             addr_r <= 0;
             origaddr_r <= 0;
-            branched_r <= 0;
+            bubble_r <= 0;
             initialized_r <= 0;
         end
         else begin
@@ -39,12 +39,16 @@ module ifetch(clk, rst,
                 initialized_r <= 1'b1;
                 if (branch_i) begin
                     addr_r <= baddr_i;
-                    branched_r <= 1'b1;
+                    bubble_r <= 1'b1;
                 end
                 else begin
                     addr_r <= addr_r + 1;
-                    branched_r <= 1'b0;
+                    bubble_r <= 1'b0;
                 end
+            end
+            else begin
+                bubble_r <= 1'b1;
+                addr_r <= addr_r - 1;
             end
         end
     end
