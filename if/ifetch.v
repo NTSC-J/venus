@@ -1,6 +1,13 @@
+/*
+ * Instruction Fetch stage
+ *
+ * when performing branch, two pipeline bubbles are needed
+ * when stalled from ID, it needs to stop incrementing pc and wait
+ */
+
 module ifetch(clk, rst,
           v_o,
-          branch_i, baddr_i, addr_o, origaddr_o,
+          branch_i, baddr_i, addr_o,
           stall_i);
 
 `include "include/params.vh"
@@ -10,12 +17,10 @@ module ifetch(clk, rst,
     input branch_i; // whether to branch
     input [`ADDR - 1:0] baddr_i; // address to branch to
     output [`ADDR - 1:0] addr_o; // address to read next time
-    output [`ADDR - 1:0] origaddr_o; // address of branch instruction
     input stall_i;
 
     // pipeline registers
     reg [`ADDR - 1:0] addr_r;
-    reg [`ADDR - 1:0] origaddr_r;
 
     // internal registers
     reg bubble_r;
@@ -24,18 +29,15 @@ module ifetch(clk, rst,
     // connecting registers to output
     assign v_o = ~branch_i && ~bubble_r && initialized_r;
     assign addr_o = addr_r;
-    assign origaddr_o = origaddr_r;
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
             addr_r <= 0;
-            origaddr_r <= 0;
             bubble_r <= 0;
             initialized_r <= 0;
         end
         else begin
             if (~stall_i) begin
-                origaddr_r <= addr_r;
                 initialized_r <= 1'b1;
                 if (branch_i) begin
                     addr_r <= baddr_i;
@@ -45,10 +47,6 @@ module ifetch(clk, rst,
                     addr_r <= addr_r + 1;
                     bubble_r <= 1'b0;
                 end
-            end
-            else begin
-                bubble_r <= 1'b1;
-                addr_r <= addr_r - 1;
             end
         end
     end
