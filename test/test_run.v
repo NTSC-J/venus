@@ -16,6 +16,7 @@ module test_run();
 
     reg clk, rst;
     integer cycle;
+    reg [12*8-1:0] color;
 
     core c(.clk(clk), .rst(rst));
 
@@ -40,18 +41,20 @@ module test_run();
 
         $display({`CYC_COLOR, "### cycle%3d ###", `RESET_COLOR}, cycle);
 
-        if (c.ifetch1.branch_i) $write(`STRONG_COLOR);
-        $write("IF:      branch_i %b, baddr_i %h",
-                c.ifetch1.branch_i, c.ifetch1.baddr_i);
-        $write({`RESET_COLOR, "\n"});
+        if (c.ifetch1.branch_i) color = `STRONG_COLOR;
+        else color = `RESET_COLOR;
+        $display("%0sIF:      branch_i %b, baddr_i %h%0s",
+                color, c.ifetch1.branch_i, c.ifetch1.baddr_i, `RESET_COLOR);
 
-        if (~c.idecode1.v_i) $write(`WEAK_COLOR);
-        $display("IF-->ID: v %b, addr %h, origaddr %h",
-                c.v_ifid, c.addr_ifmem,
-                c.origaddr_ifid);
-        $write("IM-->ID: inst %h",
-                c.inst_memid);
-        $write({`RESET_COLOR, "\n"});
+        //if (~c.idecode1.v_i) $write(`WEAK_COLOR);
+        if (~c.idecode1.v_i) color = `WEAK_COLOR;
+        else color = `RESET_COLOR;
+        $display("%0sIF-->ID: v %b",
+                color, c.v_ifid);
+        $display("%0sIF-->IM: addr %h",
+                color, c.addr_ifmem);
+        $display("%0sIM-->ID: inst %h, origaddr %h%0s",
+                color, c.inst_memid, c.origaddr_memid, `RESET_COLOR);
 
         $display({"ID<->RF: rd_reserve %b, rd_name %h, rs_name %h,\n",
                   "         rd_data %h, rs_data %h, rd_r %b, rs_r %b"},
@@ -59,23 +62,21 @@ module test_run();
                 c.rd_data_regid, c.rs_data_regid,
                 c.rd_reserved_regid, c.rs_reserved_regid);
         
-        if (~c.v_idex) $write(`WEAK_COLOR);
-        $write({"ID-->EX: v %b, src %h, dest %h, cc %b,\n",
-                  "         wb %b, wb_rd_name %h, dopc %b, opc %b, origaddr %h"},
-                c.v_idex, c.src_idex, c.dest_idex, c.cc_idex,
-                c.wb_idex, c.wb_rd_name_idex, c.dopc_idex, c.opc_idex,
-                c.origaddr_idex);
-        $write({`RESET_COLOR, "\n"});
+        if (~c.v_idex) color = `WEAK_COLOR;
+        else color = `RESET_COLOR;
+        $display({"%0sID-->EX: v %b, src %h, dest %h, cc %b,\n",
+                  "%0s         wb %b, wb_rd_name %h, dopc %b, opc %b, origaddr %h%0s"},
+                color, c.v_idex, c.src_idex, c.dest_idex, c.cc_idex,
+                color, c.wb_idex, c.wb_rd_name_idex, c.dopc_idex, c.opc_idex, c.origaddr_idex, `RESET_COLOR);
 
-        if (~c.wb_exreg) $write(`WEAK_COLOR);
-        $write("EX-->RF: wb %b, wb_rd_name %h, wb_rd_data %h",
-                c.wb_exreg, c.wb_rd_name_exreg, c.wb_rd_data_exreg);
-        $write({`RESET_COLOR, "\n"});
+        if (~c.wb_exreg) color = `WEAK_COLOR;
+        else color = `RESET_COLOR;
+        $display("%0sEX-->RF: wb %b, wb_rd_name %h, wb_rd_data %h%0s",
+                color, c.wb_exreg, c.wb_rd_name_exreg, c.wb_rd_data_exreg, `RESET_COLOR);
 
-        if (c.stall_idif | c.stall_exid) $write(`STRONG_COLOR);
-        else $write(`WEAK_COLOR);
-        $write("STALL:   idif %b, exid %b", c.stall_idif, c.stall_exid);
-        $write({`RESET_COLOR, "\n"});
+        if (c.stall_idif | c.stall_exid) color = `STRONG_COLOR;
+        else color = `WEAK_COLOR;
+        $display("%0sSTALL:   idif %b, exid %b%0s", color, c.stall_idif, c.stall_exid, `RESET_COLOR);
 
         $display({"Regs:    %h %h %h %h %h %h %h %h\n",
                   "         %h %h %h %h %h %h %h %h"},

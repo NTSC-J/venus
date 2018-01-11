@@ -28,10 +28,10 @@ module ifetch(clk, rst,
 
     always @(posedge clk or negedge rst) begin
         if (~rst) begin
-            initialized_r <= 0;
             addr_r <= 0;
             origaddr_r <= 0;
             branched_r <= 0;
+            initialized_r <= 0;
         end
         else begin
             if (~stall_i) begin

@@ -16,7 +16,7 @@ clean:
 	rm mem/mem.dat
 
 run:
-	printf "\x1b[8;16;80t"
+	printf "\x1b[8;17;80t"
 	./simv | tail -n+4 | head -n-6 | less -R
 	printf "\x1b[8;73;80t"
 

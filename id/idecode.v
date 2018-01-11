@@ -82,7 +82,7 @@ module idecode(
 
     wire v = v_i & ~rd_reserved_i & ~(~immf & rs_reserved_i);
 
-    assign stall_o = v_r & (stall_i | rd_reserved_i | (~immf & rs_reserved_i));
+    assign stall_o = v_i & (stall_i | rd_reserved_i | (~immf & rs_reserved_i));
     // connected to RF, without pipeline registers
     assign rd_reserve_o = v & wb;
     assign rd_name_o = rd_name;

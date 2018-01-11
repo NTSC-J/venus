@@ -13,7 +13,7 @@ module core(clk, rst);
     wire v_ifid, v_idex;
     wire stall_idif, stall_exid;
     // wires for IF, ID stages
-    wire [`ADDR - 1:0] addr_ifmem, origaddr_ifid;
+    wire [`ADDR - 1:0] addr_ifmem, origaddr_memid;
     wire [`WORD - 1:0] inst_memid;
     // wires for IF, EX stages (jump)
     wire branch_exif;
@@ -53,21 +53,21 @@ module core(clk, rst);
         // global
         .clk(clk), .rst(rst),
         // ID
-        .addr_o(addr_ifmem), .origaddr_o(origaddr_ifid),
+        .addr_o(addr_ifmem),
         // EX
         .branch_i(branch_exif), .baddr_i(baddr_exif),
         .stall_i(stall_idif), .v_o(v_ifid)
     );
     // instruction memory
     DP_mem32x64k imem(
-        .clk(clk), .A(addr_ifmem), .W(1'b0), .D(), .Q(inst_memid)
+        .clk(clk), .A(addr_ifmem), .W(1'b0), .D(), .Q(inst_memid), .Ao(origaddr_memid)
     );
     idecode idecode1(
         // global
         .clk(clk), .rst(rst),
         // IF
         .v_i(v_ifid), .stall_o(stall_idif),
-        .inst_i(inst_memid), .origaddr_i(origaddr_ifid),
+        .inst_i(inst_memid), .origaddr_i(origaddr_memid),
         // EX
         .src_o(src_idex), .dest_o(dest_idex),
         .wb_o(wb_idex), .wb_rd_name_o(wb_rd_name_idex),

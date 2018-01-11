@@ -68,7 +68,6 @@ for (my $i = 0; $i < 16; $i++) {
            "        .data_o(data%1\$x),\n".
            "        .w_reserve_i(w_reserve[%1\$d]),\n".
            "        .w_reserved_o(w_reserved[%1\$d]),\n".
-           "        .w_unreserve_i(selected_r[%1\$d]),\n".
            "        .wb_i(wb_i & selected_r[%1\$d])\n".
            "    );\n", $i);
 }
