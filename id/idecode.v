@@ -80,9 +80,11 @@ module idecode(
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
     wire wb = wb_required(opecode);
 
+    wire v = v_i & ~rd_reserved_i & ~(~immf & rs_reserved_i);
+
     assign stall_o = v_r & (stall_i | rd_reserved_i | (~immf & rs_reserved_i));
     // connected to RF, without pipeline registers
-    assign rd_reserve_o = wb; // TODO: redundant?
+    assign rd_reserve_o = v & wb;
     assign rd_name_o = rd_name;
     assign rs_name_o = rs_name;
 
@@ -100,7 +102,7 @@ module idecode(
         end
         else begin
             if (~stall_i) begin
-                v_r <= v_i;
+                v_r <= v;
                 if (immf)
                     src_r <= expand_imm(opecode, imm);
                 else

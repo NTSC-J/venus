@@ -53,6 +53,12 @@ module test_run();
                 c.inst_memid);
         $write({`RESET_COLOR, "\n"});
 
+        $display({"ID<->RF: rd_reserve %b, rd_name %h, rs_name %h,\n",
+                  "         rd_data %h, rs_data %h, rd_r %b, rs_r %b"},
+                c.rd_reserve_idreg, c.rd_name_idreg, c.rs_name_idreg,
+                c.rd_data_regid, c.rs_data_regid,
+                c.rd_reserved_regid, c.rs_reserved_regid);
+        
         if (~c.v_idex) $write(`WEAK_COLOR);
         $write({"ID-->EX: v %b, src %h, dest %h, cc %b,\n",
                   "         wb %b, wb_rd_name %h, dopc %b, opc %b, origaddr %h"},
@@ -60,13 +66,7 @@ module test_run();
                 c.wb_idex, c.wb_rd_name_idex, c.dopc_idex, c.opc_idex,
                 c.origaddr_idex);
         $write({`RESET_COLOR, "\n"});
-        
-        $display({"ID<->RF: rd_reserve %b, rd_name %h, rs_name %h,\n",
-                  "         rd_data %h, rs_data %h, rd_r %b, rs_r %b"},
-                c.rd_reserve_idreg, c.rd_name_idreg, c.rs_name_idreg,
-                c.rd_data_regid, c.rs_data_regid,
-                c.rd_reserved_regid, c.rs_reserved_regid);
-        
+
         if (~c.wb_exreg) $write(`WEAK_COLOR);
         $write("EX-->RF: wb %b, wb_rd_name %h, wb_rd_data %h",
                 c.wb_exreg, c.wb_rd_name_exreg, c.wb_rd_data_exreg);
