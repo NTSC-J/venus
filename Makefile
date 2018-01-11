@@ -15,6 +15,11 @@ clean:
 	rm -rf csrc simv.daidir ucli.key simv
 	rm mem/mem.dat
 
+run:
+	printf "\x1b[8;16;80t"
+	./simv | tail -n+4 | head -n-6 | less -R
+	printf "\x1b[8;73;80t"
+
 test_addx: gencode
 	ln -sf addx.dat mem/mem.dat
 

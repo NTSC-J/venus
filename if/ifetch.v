@@ -7,7 +7,7 @@ module ifetch(clk, rst,
 
     input clk, rst;
     output v_o;
-    input branch_i; // whether branch or not
+    input branch_i; // whether to branch
     input [`ADDR - 1:0] baddr_i; // address to branch to
     output [`ADDR - 1:0] addr_o; // address to read next time
     output [`ADDR - 1:0] origaddr_o; // address of branch instruction

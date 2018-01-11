@@ -1,6 +1,7 @@
 `include "include/params.vh"
 `timescale 1ns/100ps
 
+`define CYCLES 64
 `define BG_BRIGHTBLACK "\33[100m"
 `define BG_RED "\33[41m"
 `define BG_CYAN "\33[46m"
@@ -14,6 +15,7 @@ module test_run();
     parameter STEP = 10;
 
     reg clk, rst;
+    integer cycle;
 
     core c(.clk(clk), .rst(rst));
 
@@ -27,14 +29,16 @@ module test_run();
 
         #1.0;
         rst = 1'b1;
-        #(STEP * 24);
+        for (cycle = 0; cycle < `CYCLES; cycle = cycle + 1)
+             #(STEP);
+
         $finish;
     end // initial
 
     always @(posedge clk) begin : BREAK
         if (~rst) disable BREAK;
 
-        $display({`CYC_COLOR, "###### cycle ######", `RESET_COLOR});
+        $display({`CYC_COLOR, "### cycle%3d ###", `RESET_COLOR}, cycle);
 
         if (c.ifetch1.branch_i) $write(`STRONG_COLOR);
         $write("IF:      branch_i %b, baddr_i %h",
