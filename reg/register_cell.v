@@ -4,7 +4,7 @@ module register_cell(clk, rst,
                      data_o,
                      w_reserve_i,
                      w_reserved_o,
-                     wb_i,
+                     wb_i
                      );
    input clk, rst;
 

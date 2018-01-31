@@ -6,6 +6,7 @@ use warnings;
 print << "EOS";
 // register file
 // connected to ID, WB stage
+`include "../reg/register_cell.v"
 module register_file(
     // global
     clk, rst,
