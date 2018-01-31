@@ -1,6 +1,6 @@
 .PHONY: clean gencode
 
-VCS=vcs +warn=all +error+1000
+VCS=vcs +warn=all +error+1000 +lint=TFIPC-L
 
 all: gencode
 	$(VCS) build.v 
