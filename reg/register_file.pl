@@ -19,9 +19,9 @@ module register_file(
     wb_rd_name_i,                   // register name
     wb_rd_data_i                    // data input
 );
-`include "include/params.vh"
-`include "util/select16.v"
-`include "util/decode16.v"
+`include "../include/params.vh"
+`include "../util/select16.v"
+`include "../util/decode16.v"
 
     input clk, rst;
 

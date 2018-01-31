@@ -5,7 +5,7 @@ use warnings;
 
 print << 'EOS';
 function [`WORD -1: 0] select16;
-`include "include/params.vh"
+`include "../include/params.vh"
     input [3: 0] select;
 
     input [`WORD -1: 0] data0, data1, data2, data3;

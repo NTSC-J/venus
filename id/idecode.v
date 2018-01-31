@@ -20,10 +20,10 @@ module idecode(
     rs_name_o, rs_data_i, rs_reserved_i
 );
 
-`include "include/params.vh"
-`include "id/decode_ope.v"
-`include "id/expand_imm.v"
-`include "id/wb_required.v"
+`include "../include/params.vh"
+`include "../id/decode_ope.v"
+`include "../id/expand_imm.v"
+`include "../id/wb_required.v"
 
     // global
     input clk, rst;

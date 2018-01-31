@@ -1,5 +1,5 @@
-`include "include/params.vh"
-`include "include/mnemonic.vh"
+`include "../include/params.vh"
+`include "../include/mnemonic.vh"
 
 function wb_required;
     input [`W_OPC - 1:0] opecode;

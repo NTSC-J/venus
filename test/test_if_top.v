@@ -1,6 +1,6 @@
 module test_if_top(clk, rst, v_i, stall_i, branch_i, baddr_i);
 
-`include "include/params.vh"
+`include "../include/params.vh"
 
     input clk, rst;
     input v_i, stall_i;

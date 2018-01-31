@@ -1,4 +1,4 @@
-`include "include/params.vh"
+`include "../include/params.vh"
 
 function may_jump;
     input [`W_OPC - 1:0] opecode;

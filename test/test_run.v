@@ -1,4 +1,4 @@
-`include "include/params.vh"
+`include "../include/params.vh"
 `timescale 1ns/100ps
 
 `define CYCLES 64

@@ -6,8 +6,8 @@
  * JA (jump absolute)
  */
 
-`include "include/mnemonic.vh"
-`include "include/cc.vh"
+`include "../include/mnemonic.vh"
+`include "../include/cc.vh"
 
 // {whether to branch, address}
 function [`ADDR:0] jump_mod;

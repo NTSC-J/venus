@@ -1,7 +1,7 @@
-/simv
-/simv.daidir
-/ucli.key
-/csrc
+/sim/simv
+/sim/simv.daidir
+/sim/ucli.key
+/sim/csrc
 
 /reg/register_file.v
 /util/select16.v

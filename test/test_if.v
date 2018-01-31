@@ -1,6 +1,6 @@
 `timescale 1ns/100ps
 module test_if();
-`include "include/params.vh"
+`include "../include/params.vh"
     parameter STEP = 10;
 
     reg clk, rst;

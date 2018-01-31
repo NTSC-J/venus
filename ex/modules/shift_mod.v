@@ -9,7 +9,7 @@
  * RORx
  */
 
-`include "include/mnemonic.vh"
+`include "../include/mnemonic.vh"
 
 function [`WORD + `W_STATUS - 1:0] shift_mod;
     input [`W_OPC - 1:0] opc_i;

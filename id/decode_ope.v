@@ -1,6 +1,6 @@
 // decode opecode
 
-`include "include/mnemonic.vh"
+`include "../include/mnemonic.vh"
 // dopc = {inte, shift, logic, load, store, branch}
 function [`W_DOPC - 1:0] decode_ope;
     input [6:0] opecode;

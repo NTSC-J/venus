@@ -4,7 +4,7 @@
 
 module core(clk, rst);
 
-`include "include/params.vh"
+`include "../include/params.vh"
 
     input clk, rst;
 

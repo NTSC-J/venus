@@ -5,7 +5,7 @@
  * MULx (signed multiplication)
  */
 
-`include "include/mnemonic.vh"
+`include "../include/mnemonic.vh"
 
 function [`WORD + `W_STATUS - 1:0] mul_mod;
     input [`WORD - 1:0] src_i;

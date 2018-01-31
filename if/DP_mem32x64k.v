@@ -1,5 +1,5 @@
 module DP_mem32x64k(clk, A, W, D, Q, Ao);
-`include "include/params.vh"
+`include "../include/params.vh"
     parameter LEN = 65535;
 
     input clk;
@@ -28,7 +28,7 @@ module DP_mem32x64k(clk, A, W, D, Q, Ao);
     initial begin
         o_reg = `WORD'b0;
         o_addr_reg = `ADDR'b0;
-        $readmemh("mem/mem.dat", mem_bank);
+        $readmemh("../mem/mem.dat", mem_bank);
     end
 endmodule // DP_mem32x64k
 
