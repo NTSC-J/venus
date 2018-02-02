@@ -88,7 +88,7 @@ elaborate $base_name
 # 独立したコピーを作り出して別々に合成するか、
 # 一回だけ合成してそれをコピーするか選択する。
 # 独立したコピーを生成する場合は uniquify コマンドを用いる。
-uniquify
+# uniquify
 
 # 先にサブモジュールを合成してからそれをコピーする場合は、
 # characterize 上位インスタンス/下位インスタンス0
@@ -99,6 +99,18 @@ uniquify
 # したのち
 # set_dont_touch {上位インスタンス/下位インスタンス0 上位インスタンス/下位インスタンス1}
 # の様にこれ以降変更しないインスタンスを指定する。
+characterize {r0}
+compile -map_effort medium -area_effort low
+#compile -ungroup_all -map_effort medium -area_effort high -inc
+compile -map_effort medium -area_effort high -inc
+compile -map_effort medium -area_effort high -inc
+compile -map_effort high -area_effort high -inc
+#compile -map_effort high -area_effort high -inc -inc
+#compile -map_effort high -area_effort high -inc -inc -inc
+
+set_dont_touch {
+  r0 r1 r2 r3 r4 r5 r6 r7 r8 r9 ra rb rc rd re rf
+}
 
 # 階層破砕
 # 内部の改装を取り払って最適化したいときは、current_design を一つ上のインスタンスに指定し、

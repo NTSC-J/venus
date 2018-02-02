@@ -5,8 +5,8 @@
 #Date : 2013_08~
 
 # トップモジュール名とファイル名の変数を作っておく。
-set base_name "execute"
-set rtl_file "../ex/execute.v"
+set base_name "idecode"
+set rtl_file "../id/idecode.v"
 
 # クロック、リセットの変数を作っておく。
 # HDL 中の信号名を書いておく。
@@ -260,12 +260,12 @@ compile -map_effort high -area_effort high -inc
 # 演算器ライブラリによってできた階層を破砕
 # designwarelibをungroup
 
-set_ungroup [find cell *DW*]
+#set_ungroup [find cell *DW*]
 
 
 #さらにincrementalコンパイル
-compile -map_effort medium -area_effort high
-compile -map_effort high -area_effort high -inc
+#compile -map_effort medium -area_effort high
+#compile -map_effort high -area_effort high -inc
 #compile -map_effort high -area_effort high -inc -inc
 #compile -map_effort high -area_effort high -inc -inc -inc
 
