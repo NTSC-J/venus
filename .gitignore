@@ -8,3 +8,11 @@
 /util/decode16.v
 /mem/mem.dat
 
+/syn/*.mr
+/syn/*.pvl
+/syn/*.syn
+/syn/*.svl
+/syn/*.svf
+/syn/*.log
+/syn/*.vg
+
