@@ -13,6 +13,7 @@ module idecode(
     opc_o,              // raw opecode
     origaddr_o,
     cc_o,
+    data_addr_o,        // data memory address for load/store
     stall_i, v_o,
     // register file
     rd_reserve_o,
@@ -40,6 +41,7 @@ module idecode(
     output [`W_OPC - 1:0] opc_o;
     output [`ADDR - 1:0] origaddr_o;
     output [`W_CC - 1:0] cc_o;
+    output [`ADDR - 1:0] data_addr_o;
     output v_o;
     input stall_i;
     // register file
@@ -55,6 +57,7 @@ module idecode(
     reg [`W_OPC - 1:0] opc_r;
     reg [`ADDR - 1:0] origaddr_r;
     reg [`W_CC - 1:0] cc_r;
+    reg [`ADDR - 1:0] data_addr_r;
     reg wb_r;
     reg [`W_RD - 1:0] wb_rd_name_r;
 
@@ -66,6 +69,7 @@ module idecode(
     assign opc_o = opc_r;
     assign origaddr_o = origaddr_r;
     assign cc_o = cc_r;
+    assign data_addr_o = data_addr_r;
     assign wb_o = wb_r;
     assign wb_rd_name_o = wb_rd_name_r;
 
@@ -76,6 +80,7 @@ module idecode(
     wire [`W_CC - 1:0] cc = rd_name[`W_CC - 1:0];
     wire [`W_RS - 1:0] rs_name = inst_i[`RS_MSB:`RS_LSB];
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
+    wire [`ADDR - 1:0] data_addr = rs_data_i + $signed(imm);
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
     wire wb = wb_required(opecode);
@@ -97,6 +102,7 @@ module idecode(
             opc_r <= 0;
             origaddr_r <= 0;
             cc_r <= 0;
+            data_addr_r <= 0;
             wb_r <= 0;
             wb_rd_name_r <= 0;
         end
@@ -113,6 +119,7 @@ module idecode(
                 opc_r <= opecode;
                 origaddr_r <= origaddr_i;
                 cc_r <= cc;
+                data_addr_r <= data_addr;
                 wb_rd_name_r <= rd_name;
                 wb_r <= wb;
             end

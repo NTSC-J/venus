@@ -98,6 +98,10 @@ module core(clk, rst);
         .wb_o(wb_exreg), .wb_rd_name_o(wb_rd_name_exreg),
         .wb_rd_data_o(wb_rd_data_exreg)
     );
-    // TODO: data memory
+    // data memory
+    DP_mem32x64k dmem(
+        .clk(clk), .A(data_addr_idmem), .W(data_w_exmem), .D(data_exmem),
+        .Q(data_memex), .Ao()
+    );
 endmodule
 
