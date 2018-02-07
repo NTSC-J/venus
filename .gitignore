@@ -1,10 +1,18 @@
-/simv
-/simv.daidir
-/ucli.key
-/csrc
+/sim/simv
+/sim/simv.daidir
+/sim/ucli.key
+/sim/csrc
 
 /reg/register_file.v
 /util/select16.v
 /util/decode16.v
 /mem/mem.dat
+
+/syn/*.mr
+/syn/*.pvl
+/syn/*.syn
+/syn/*.svl
+/syn/*.svf
+/syn/*.log
+/syn/*.vg
 

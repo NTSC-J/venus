@@ -19,16 +19,16 @@ module execute(
     wb_rd_data_o
 );
 
-`include "include/params.vh"
-`include "ex/modules/addsub_mod.v"
-`include "ex/modules/mul_mod.v"
-`include "ex/modules/abs_mod.v"
-`include "ex/modules/shift_mod.v"
-`include "ex/modules/logic_mod.v"
-`include "ex/modules/set_mod.v"
+`include "../include/params.vh"
+`include "../ex/modules/addsub_mod.v"
+`include "../ex/modules/mul_mod.v"
+`include "../ex/modules/abs_mod.v"
+`include "../ex/modules/shift_mod.v"
+`include "../ex/modules/logic_mod.v"
+`include "../ex/modules/set_mod.v"
 //`include "ex/modules/load_mod.v"
 //`include "ex/modules/store_mod.v"
-`include "ex/modules/jump_mod.v"
+`include "../ex/modules/jump_mod.v"
 `define W_DATA (`WORD + `W_STATUS)
 
     // global

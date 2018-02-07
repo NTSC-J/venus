@@ -4,8 +4,11 @@ use strict;
 use warnings;
 
 print << 'EOS';
+`ifndef _select16_v_
+`define _select16_v_
+`include "../include/params.vh"
+
 function [`WORD -1: 0] select16;
-`include "include/params.vh"
     input [3: 0] select;
 
     input [`WORD -1: 0] data0, data1, data2, data3;
@@ -25,4 +28,6 @@ for (my $i = 0 ; $i <= 15 ; $i++){
 print << 'EOS';
     endcase // case(select)
 endfunction // select16
+
+`endif // _select16_v_
 EOS

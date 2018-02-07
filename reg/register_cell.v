@@ -1,10 +1,10 @@
-`include "include/params.vh"
+`include "../include/params.vh"
 module register_cell(clk, rst,
                      data_i,
                      data_o,
                      w_reserve_i,
                      w_reserved_o,
-                     wb_i,
+                     wb_i
                      );
    input clk, rst;
 

@@ -10,7 +10,7 @@ module ifetch(clk, rst,
           branch_i, baddr_i, addr_o,
           stall_i);
 
-`include "include/params.vh"
+`include "../include/params.vh"
 
     input clk, rst;
     output v_o;
@@ -24,6 +24,7 @@ module ifetch(clk, rst,
 
     // internal registers
     reg bubble_r;
+    reg branched_r;
     reg initialized_r;
     
     // connecting registers to output
@@ -34,6 +35,7 @@ module ifetch(clk, rst,
         if (~rst) begin
             addr_r <= 0;
             bubble_r <= 0;
+            branched_r <= 0;
             initialized_r <= 0;
         end
         else begin
@@ -42,11 +44,17 @@ module ifetch(clk, rst,
                 if (branch_i) begin
                     addr_r <= baddr_i;
                     bubble_r <= 1'b1;
+                    branched_r <= 1'b1;
                 end
                 else begin
                     addr_r <= addr_r + 1;
                     bubble_r <= 1'b0;
+                    branched_r <= 1'b0;
                 end
+            end
+            else if (~bubble_r && ~branch_i && ~branched_r) begin
+                    addr_r <= addr_r - 1;
+                    bubble_r <= 1'b1;
             end
         end
     end
