@@ -74,6 +74,10 @@ module test_run();
         $display("%0sEX-->RF: wb %b, wb_rd_name %h, wb_rd_data %h%0s",
                 color, c.wb_exreg, c.wb_rd_name_exreg, c.wb_rd_data_exreg, `RESET_COLOR);
 
+        $display("ID-->DM: data_addr %h", c.data_addr_iddm);
+        $display("EX<->DM: data_w %b, data_exdm %h, data_dmex %h",
+                c.data_w_exdm, c.data_exdm, c.data_dmex);
+
         if (c.stall_idif | c.stall_exid) color = `STRONG_COLOR;
         else color = `WEAK_COLOR;
         $display("%0sSTALL:   idif %b, exid %b%0s", color, c.stall_idif, c.stall_exid, `RESET_COLOR);

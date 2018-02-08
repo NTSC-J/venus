@@ -16,16 +16,19 @@ clean:
 	rm ../mem/mem.dat
 
 run:
-	printf "\x1b[8;17;80t"
+	printf "\x1b[8;19;80t"
 	./simv | tail -n+4 | head -n-6 | less -R
 	printf "\x1b[8;73;80t"
 
 test_addx: gencode
-	ln -sf addx.dat ../mem/mem.dat
+	ln -sf addx.dat ../mem/imem.dat
 
 test_loop: gencode
-	ln -sf loop.dat ../mem/mem.dat
+	ln -sf loop.dat ../mem/imem.dat
 
 test_interlock: gencode
-	ln -sf interlock.dat ../mem/mem.dat
+	ln -sf interlock.dat ../mem/imem.dat
+
+test_load: gencode
+	ln -sf load.dat ../mem/imem.dat
 

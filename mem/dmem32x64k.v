@@ -1,5 +1,5 @@
-module DP_mem32x64k(clk, A, W, D, Q, Ao);
 `include "../include/params.vh"
+module dmem32x64k(clk, A, W, D, Q);
     parameter LEN = 65535;
 
     input clk;
@@ -7,18 +7,14 @@ module DP_mem32x64k(clk, A, W, D, Q, Ao);
     input W;
     input [`WORD - 1:0] D;
     output [`WORD - 1:0] Q;
-    output [`ADDR - 1:0] Ao;
 
     reg [`WORD - 1:0] mem_bank [0:LEN];
 
     reg [`WORD - 1:0] o_reg;
-    reg [`ADDR - 1:0] o_addr_reg;
 
     assign Q = o_reg;
-    assign Ao = o_addr_reg;
 
     always @(posedge clk) begin
-        o_addr_reg <= A;
         if (W == 1'b1) // write
             mem_bank[A] <= D;
         else // read
@@ -27,8 +23,7 @@ module DP_mem32x64k(clk, A, W, D, Q, Ao);
 
     initial begin
         o_reg = `WORD'b0;
-        o_addr_reg = `ADDR'b0;
-        $readmemh("../mem/mem.dat", mem_bank);
+        $readmemh("../mem/dmem.dat", mem_bank);
     end
-endmodule // DP_mem32x64k
+endmodule // dmem32x64k
 

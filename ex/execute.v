@@ -16,7 +16,7 @@ module execute(
     // Register file
     wb_o,
     wb_rd_name_o,
-    wb_rd_data_o
+    wb_rd_data_o,
     // data memory (load/store)
     data_w_o,
     data_o,
@@ -30,8 +30,8 @@ module execute(
 `include "../ex/modules/shift_mod.v"
 `include "../ex/modules/logic_mod.v"
 `include "../ex/modules/set_mod.v"
-`include "ex/modules/load_mod.v"
-`include "ex/modules/store_mod.v"
+//`include "ex/modules/load_mod.v"
+//`include "ex/modules/store_mod.v"
 `include "../ex/modules/jump_mod.v"
 `define W_DATA (`WORD + `W_STATUS)
 
@@ -79,6 +79,8 @@ module execute(
         addsub_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] mul_data =
         mul_mod(.src_i(src_i), .dest_i(dest_i));
+    wire [`W_DATA - 1:0] div_data =
+        {`W_DATA{1'b0}}; // TODO
     wire [`W_DATA - 1:0] abs_data =
         abs_mod(.src_i(src_i));
     wire [`W_DATA - 1:0] shift_data =
@@ -88,10 +90,10 @@ module execute(
     wire [`W_DATA - 1:0] set_data =
         set_mod(.opc_i(opc_i), .src_i(src_i), .dest_i(dest_i));
     wire [`W_DATA - 1:0] load_data =
-        load_mod(.data_addr_i(data_addr));
+        {data_i, `W_STATUS'b0}; // TODO
     // store, jump and nop will not alter the register file
     // but clear the status register
-    store_mod(.active_i(dopc_i[`DSTORE]), .src_i(src_i), .dest_i(dest_i));
+    //store_mod(.active_i(dopc_i[`DSTORE]), .src_i(src_i), .dest_i(dest_i));
     wire [`ADDR:0] jump_data =
         jump_mod(.opc_i(opc_i), .cc_i(cc_i), .src_i(src_i), .origaddr_i(origaddr_i), .status_i(status_r));
     assign branch_o = dopc_i[`DJUMP] & jump_data[`ADDR];
@@ -100,12 +102,12 @@ module execute(
     wire [`W_DATA - 1:0] actual_data =
         ({`W_DATA{dopc_i[`DADDSUB]}} & addsub_data) |
         ({`W_DATA{dopc_i[`DMUL]}}    & mul_data)    |
-        ({`W_DATA{dopc_i[`DDIV]}}    & `W_DATA'b0)  | // TODO
+        ({`W_DATA{dopc_i[`DDIV]}}    & div_data)    |
         ({`W_DATA{dopc_i[`DABS]}}    & abs_data)    |
         ({`W_DATA{dopc_i[`DSHIFT]}}  & shift_data)  |
         ({`W_DATA{dopc_i[`DLOGIC]}}  & logic_data)  |
         ({`W_DATA{dopc_i[`DSET]}}    & set_data)    |
-        ({`W_DATA{dopc_i[`DLOAD]}}   & `W_DATA'b0); // TODO
+        ({`W_DATA{dopc_i[`DLOAD]}}   & load_data);
     wire wb = v_i & wb_i;
     wire [`WORD - 1:0] wb_rd_data = actual_data[`W_DATA - 1:`W_STATUS];
     wire [`W_STATUS - 1:0] status = actual_data[`W_STATUS - 1:0];

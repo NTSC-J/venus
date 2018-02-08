@@ -6,7 +6,8 @@
 /reg/register_file.v
 /util/select16.v
 /util/decode16.v
-/mem/mem.dat
+/mem/imem.dat
+/mem/dmem.dat
 
 /syn/*.mr
 /syn/*.pvl

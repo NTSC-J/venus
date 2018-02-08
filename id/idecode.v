@@ -80,7 +80,7 @@ module idecode(
     wire [`W_CC - 1:0] cc = rd_name[`W_CC - 1:0];
     wire [`W_RS - 1:0] rs_name = inst_i[`RS_MSB:`RS_LSB];
     wire [`W_IMM - 1:0] imm = inst_i[`IMM_MSB:`IMM_LSB];
-    wire [`ADDR - 1:0] data_addr = rs_data_i + $signed(imm);
+    wire [`ADDR - 1:0] data_addr = rs_data_i + $signed(imm); // LD/ST
 
     wire [`W_DOPC - 1:0] dopc = decode_ope(opecode);
     wire wb = wb_required(opecode);
