@@ -32,3 +32,6 @@ test_interlock: gencode
 test_load: gencode
 	ln -sf load.dat ../mem/imem.dat
 
+test_store: gencode
+	ln -sf store.dat ../mem/imem.dat
+
