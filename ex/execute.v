@@ -66,6 +66,7 @@ module execute(
     // internal register
     reg [`W_STATUS - 1:0] status_r;
     reg dm_wait_r;
+    reg [`ADDR - 1:0] ls_addr_r;
 
     // connecting registers to output
     assign wb_o = wb_r;
@@ -132,7 +133,14 @@ module execute(
             wb_rd_name_r <= wb_rd_name_i;
             wb_rd_data_r <= wb_rd_data;
             status_r <= status;
-            dm_wait_r <= ~dm_wait_r & (dopc_i[`DLOAD] | dopc_i[`DSTORE]);
+
+            if (~dm_wait_r & ls_addr_r != origaddr_i & (dopc_i[`DLOAD] | dopc_i[`DSTORE])) begin
+                dm_wait_r <= 1'b1;
+                ls_addr_r <= origaddr_i;
+            end
+            else
+                dm_wait_r <= 1'b0;
+
             if (dopc_i[`DHALT])
                 halt_r <= 1'b1;
         end

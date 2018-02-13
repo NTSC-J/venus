@@ -35,3 +35,6 @@ test_load: gencode
 test_store: gencode
 	ln -sf store.dat ../mem/imem.dat
 
+test_vadd: gencode
+	ln -sf vadd.dat ../mem/imem.dat
+
