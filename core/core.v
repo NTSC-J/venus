@@ -36,9 +36,9 @@ module core(clk, rst);
     wire [`WORD - 1:0] wb_rd_data_exreg;
 
     // data memory
-    wire [`ADDR - 1:0] data_addr_iddm;
-    wire data_w_exdm;
-    wire [`WORD - 1:0] data_exdm, data_dmex;
+    wire [`ADDR - 1:0] dm_addr_iddm, dm_addr_exdm;
+    wire dm_w_exdm;
+    wire [`WORD - 1:0] dm_data_exdm, dm_data_dmex;
 
     register_file register_file1(
         // global
@@ -79,15 +79,14 @@ module core(clk, rst);
         .dopc_o(dopc_idex), .opc_o(opc_idex),
         .origaddr_o(origaddr_idex),
         .cc_o(cc_idex),
+        .dm_addr_o(dm_addr_iddm),
         .stall_i(stall_exid), .v_o(v_idex),
         // Register file
         .rd_reserve_o(rd_reserve_idreg),
         .rd_name_o(rd_name_idreg), .rs_name_o(rs_name_idreg),
         .rd_data_i(rd_data_regid), .rs_data_i(rs_data_regid),
         .rd_reserved_i(rd_reserved_regid),
-        .rs_reserved_i(rs_reserved_regid),
-        // data memory
-        .data_addr_o(data_addr_iddm)
+        .rs_reserved_i(rs_reserved_regid)
     );
     execute execute1(
         // global
@@ -105,12 +104,13 @@ module core(clk, rst);
         .wb_o(wb_exreg), .wb_rd_name_o(wb_rd_name_exreg),
         .wb_rd_data_o(wb_rd_data_exreg),
         // data memory
-        .data_w_o(data_w_exdm), .data_o(data_exdm), .data_i(data_dmex)
+        .dm_w_o(dm_w_exdm),
+        .dm_data_o(dm_data_exdm), .dm_data_i(dm_data_dmex)
     );
     // data memory
     dmem32x64k dmem(
-        .clk(clk), .A(data_addr_iddm), .W(data_w_exdm), .D(data_exdm),
-        .Q(data_dmex)
+        .clk(clk), .A(dm_addr_iddm), .W(dm_w_exdm), .D(dm_data_exdm),
+        .Q(dm_data_dmex)
     );
 endmodule
 
