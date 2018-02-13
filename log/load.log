@@ -1,0 +1,1161 @@
+Chronologic VCS simulator copyright 1991-2014
+Contains Synopsys proprietary information.
+Compiler version I-2014.03; Runtime version I-2014.03;  Feb 13 17:20 2018
+[41m[30m### cycle  0 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0000
+[100m[30mIM-->ID: inst 00000000, origaddr 0000[0m
+ID<->RF: rd_reserve 0, rd_name 0, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc 000,
+[100m[30m         wb 0, wb_rd_name 0, dopc 000000000000, opc 0000000, origaddr 0000[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 0, wb_rd_data 00000000[0m
+ID-->DM: dm_addr 0000
+EX<->DM: w 0, write 00000000, read 00000000
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   10000000000000000
+[41m[30m### cycle  1 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0001
+[0mIM-->ID: inst 26000000, origaddr 0000[0m
+ID<->RF: rd_reserve 1, rd_name 0, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc 000,
+[100m[30m         wb 1, wb_rd_name 0, dopc 100000000000, opc 0000000, origaddr 0000[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 0, wb_rd_data 00000000[0m
+ID-->DM: dm_addr 0000
+EX<->DM: w 0, write 00000000, read 00000001
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000100000
+JDATA:   10000000000000000
+[41m[30m### cycle  2 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0002
+[0mIM-->ID: inst 31100001, origaddr 0001[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc 000,
+[0m         wb 1, wb_rd_name 0, dopc 000001000000, opc 0010011, origaddr 0000[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 0, wb_rd_data 00000000[0m
+ID-->DM: dm_addr 0000
+EX<->DM: w 0, write 00000000, read 00000001
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  100000
+DATA:    00000000000000000000000000000000000000
+JDATA:   10000000000000000
+[41m[30m### cycle  3 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0003
+[0mIM-->ID: inst 31200002, origaddr 0002[0m
+ID<->RF: rd_reserve 1, rd_name 2, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 1
+[0mID-->EX: v 1, src 00000001, dest 00000000, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 0001[0m
+[0mEX-->RF: wb 1, wb_rd_name 0, wb_rd_data 00000000[0m
+ID-->DM: dm_addr 0001
+EX<->DM: w 0, write 00000000, read 00000001
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle  4 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0004
+[0mIM-->ID: inst 31300003, origaddr 0003[0m
+ID<->RF: rd_reserve 1, rd_name 3, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000002, dest 00000000, cc 010,
+[0m         wb 1, wb_rd_name 2, dopc 000000010000, opc 0011000, origaddr 0002[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000001[0m
+ID-->DM: dm_addr 0002
+EX<->DM: w 0, write 00000000, read 00000010
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle  5 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0005
+[0mIM-->ID: inst 31400004, origaddr 0004[0m
+ID<->RF: rd_reserve 1, rd_name 4, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000003, dest 00000000, cc 011,
+[0m         wb 1, wb_rd_name 3, dopc 000000010000, opc 0011000, origaddr 0003[0m
+[0mEX-->RF: wb 1, wb_rd_name 2, wb_rd_data 00000010[0m
+ID-->DM: dm_addr 0003
+EX<->DM: w 0, write 00000000, read 00000011
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000000 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010001000000
+JDATA:   00000000000000000
+[41m[30m### cycle  6 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0006
+[0mIM-->ID: inst 31500005, origaddr 0005[0m
+ID<->RF: rd_reserve 1, rd_name 5, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000004, dest 00000000, cc 100,
+[0m         wb 1, wb_rd_name 4, dopc 000000010000, opc 0011000, origaddr 0004[0m
+[0mEX-->RF: wb 1, wb_rd_name 3, wb_rd_data 00000011[0m
+ID-->DM: dm_addr 0004
+EX<->DM: w 0, write 00000000, read 00000100
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000000 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000000000000
+JDATA:   00000000000000000
+[41m[30m### cycle  7 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0007
+[0mIM-->ID: inst 31600006, origaddr 0006[0m
+ID<->RF: rd_reserve 1, rd_name 6, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000005, dest 00000000, cc 101,
+[0m         wb 1, wb_rd_name 5, dopc 000000010000, opc 0011000, origaddr 0005[0m
+[0mEX-->RF: wb 1, wb_rd_name 4, wb_rd_data 00000100[0m
+ID-->DM: dm_addr 0005
+EX<->DM: w 0, write 00000000, read 00000101
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000000 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle  8 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0008
+[0mIM-->ID: inst 31700007, origaddr 0007[0m
+ID<->RF: rd_reserve 1, rd_name 7, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000006, dest 00000000, cc 110,
+[0m         wb 1, wb_rd_name 6, dopc 000000010000, opc 0011000, origaddr 0006[0m
+[0mEX-->RF: wb 1, wb_rd_name 5, wb_rd_data 00000101[0m
+ID-->DM: dm_addr 0006
+EX<->DM: w 0, write 00000000, read 00000110
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000100 00000000 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle  9 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0009
+[0mIM-->ID: inst 31800008, origaddr 0008[0m
+ID<->RF: rd_reserve 1, rd_name 8, rs_name 0,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000007, dest 00000000, cc 111,
+[0m         wb 1, wb_rd_name 7, dopc 000000010000, opc 0011000, origaddr 0007[0m
+[0mEX-->RF: wb 1, wb_rd_name 6, wb_rd_data 00000110[0m
+ID-->DM: dm_addr 0007
+EX<->DM: w 0, write 00000000, read 00000111
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000100 00000101 00000000 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010001000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 10 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000a
+[0mIM-->ID: inst 31100000, origaddr 0009[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000001, rs_data 00000000, rd_r 0, rs_r 0
+[0mID-->EX: v 1, src 00000008, dest 00000000, cc 000,
+[0m         wb 1, wb_rd_name 8, dopc 000000010000, opc 0011000, origaddr 0008[0m
+[0mEX-->RF: wb 1, wb_rd_name 7, wb_rd_data 00000111[0m
+ID-->DM: dm_addr 0008
+EX<->DM: w 0, write 00000000, read 00001000
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000100 00000101 00000110 00000000
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000001000000000000000000
+JDATA:   10000000000000000
+[41m[30m### cycle 11 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000b
+[0mIM-->ID: inst 31100001, origaddr 000a[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000001, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000000, dest 00000001, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 0009[0m
+[0mEX-->RF: wb 1, wb_rd_name 8, wb_rd_data 00001000[0m
+ID-->DM: dm_addr 0000
+EX<->DM: w 0, write 00000001, read 00001001
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000100 00000101 00000110 00000111
+         00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000001000000000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 12 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000a
+[100m[30mIM-->ID: inst 31100002, origaddr 000b[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000001, rs_data 00000000, rd_r 1, rs_r 0
+[100m[30mID-->EX: v 0, src 00000001, dest 00000001, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000a[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00001001[0m
+ID-->DM: dm_addr 0001
+EX<->DM: w 0, write 00000001, read 00000001
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000001 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 13 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000b
+[0mIM-->ID: inst 31100001, origaddr 000a[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00001001, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000002, dest 00000001, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000b[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000001[0m
+ID-->DM: dm_addr 0002
+EX<->DM: w 0, write 00000001, read 00000010
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00001001 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 14 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000c
+[0mIM-->ID: inst 31100002, origaddr 000b[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00001001, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000001, dest 00001001, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000a[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000010[0m
+ID-->DM: dm_addr 0001
+EX<->DM: w 0, write 00001001, read 00000011
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00001001 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 15 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000b
+[100m[30mIM-->ID: inst 31100003, origaddr 000c[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00001001, rs_data 00000000, rd_r 1, rs_r 0
+[100m[30mID-->EX: v 0, src 00000002, dest 00001001, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000b[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000011[0m
+ID-->DM: dm_addr 0002
+EX<->DM: w 0, write 00001001, read 00000010
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00001001 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 16 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000c
+[0mIM-->ID: inst 31100002, origaddr 000b[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000011, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000003, dest 00001001, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000c[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000010[0m
+ID-->DM: dm_addr 0003
+EX<->DM: w 0, write 00001001, read 00000011
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000011 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 17 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000d
+[0mIM-->ID: inst 31100003, origaddr 000c[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000011, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000002, dest 00000011, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000b[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000011[0m
+ID-->DM: dm_addr 0002
+EX<->DM: w 0, write 00000011, read 00000100
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000011 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 18 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000c
+[100m[30mIM-->ID: inst 31100004, origaddr 000d[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000011, rs_data 00000000, rd_r 1, rs_r 0
+[100m[30mID-->EX: v 0, src 00000003, dest 00000011, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000c[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000100[0m
+ID-->DM: dm_addr 0003
+EX<->DM: w 0, write 00000011, read 00000011
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000011 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000010001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 19 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000d
+[0mIM-->ID: inst 31100003, origaddr 000c[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000100, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000004, dest 00000011, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000d[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000011[0m
+ID-->DM: dm_addr 0004
+EX<->DM: w 0, write 00000011, read 00000100
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000100 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 20 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000e
+[0mIM-->ID: inst 31100004, origaddr 000d[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000100, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000003, dest 00000100, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000c[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000100[0m
+ID-->DM: dm_addr 0003
+EX<->DM: w 0, write 00000100, read 00000101
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000100 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 21 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000d
+[100m[30mIM-->ID: inst 31100005, origaddr 000e[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000100, rs_data 00000000, rd_r 1, rs_r 0
+[100m[30mID-->EX: v 0, src 00000004, dest 00000100, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000d[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000101[0m
+ID-->DM: dm_addr 0004
+EX<->DM: w 0, write 00000100, read 00000100
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000100 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 22 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000e
+[0mIM-->ID: inst 31100004, origaddr 000d[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000101, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000005, dest 00000100, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000e[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000100[0m
+ID-->DM: dm_addr 0005
+EX<->DM: w 0, write 00000100, read 00000101
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000101 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 23 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000f
+[0mIM-->ID: inst 31100005, origaddr 000e[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000101, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000004, dest 00000101, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000d[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000101[0m
+ID-->DM: dm_addr 0004
+EX<->DM: w 0, write 00000101, read 00000110
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000101 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 24 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000e
+[100m[30mIM-->ID: inst 31100006, origaddr 000f[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000101, rs_data 00000000, rd_r 1, rs_r 0
+[100m[30mID-->EX: v 0, src 00000005, dest 00000101, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000e[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000110[0m
+ID-->DM: dm_addr 0005
+EX<->DM: w 0, write 00000101, read 00000101
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000101 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100000001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 25 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 000f
+[0mIM-->ID: inst 31100005, origaddr 000e[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000110, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000006, dest 00000101, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000f[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000101[0m
+ID-->DM: dm_addr 0006
+EX<->DM: w 0, write 00000101, read 00000110
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000110 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 26 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0010
+[0mIM-->ID: inst 31100006, origaddr 000f[0m
+ID<->RF: rd_reserve 0, rd_name 1, rs_name 0,
+         rd_data 00000110, rs_data 00000000, rd_r 1, rs_r 0
+[0mID-->EX: v 1, src 00000005, dest 00000110, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000e[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000110[0m
+ID-->DM: dm_addr 0005
+EX<->DM: w 0, write 00000110, read 00000111
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000110 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010001000000
+JDATA:   00000000000000000
+[41m[30m### cycle 27 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 000f
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0010[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000006, dest 00000110, cc 001,
+[100m[30m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000f[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data 00000111[0m
+ID-->DM: dm_addr 0006
+EX<->DM: w 0, write 00000110, read 00000110
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000110 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000100010000000000
+JDATA:   00000000000000000
+[41m[30m### cycle 28 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0010
+[0mIM-->ID: inst 31100006, origaddr 000f[0m
+ID<->RF: rd_reserve 1, rd_name 1, rs_name 0,
+         rd_data 00000111, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0010[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name 1, wb_rd_data 00000110[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read 00000111
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000111 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 29 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0011
+[0mIM-->ID: inst xxxxxxxx, origaddr 0010[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000006, dest 00000111, cc 001,
+[0m         wb 1, wb_rd_name 1, dopc 000000010000, opc 0011000, origaddr 000f[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr 0006
+EX<->DM: w 0, write 00000111, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000111 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx000000
+JDATA:   00000000000000000
+[41m[30m### cycle 30 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0010
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0011[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0010[0m
+[0mEX-->RF: wb 1, wb_rd_name 1, wb_rd_data xxxxxxxx[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read 00000111
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000111 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 31 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0011
+[0mIM-->ID: inst xxxxxxxx, origaddr 0010[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0011[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 xxxxxxxx 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 32 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0012
+[0mIM-->ID: inst xxxxxxxx, origaddr 0011[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0010[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 xxxxxxxx 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 33 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0011
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0012[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0011[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 xxxxxxxx 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 34 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0012
+[0mIM-->ID: inst xxxxxxxx, origaddr 0011[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0012[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 35 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0013
+[0mIM-->ID: inst xxxxxxxx, origaddr 0012[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0011[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 36 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0012
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0013[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0012[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 37 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0013
+[0mIM-->ID: inst xxxxxxxx, origaddr 0012[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0013[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 38 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0014
+[0mIM-->ID: inst xxxxxxxx, origaddr 0013[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0012[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 39 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0013
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0014[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0013[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 40 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0014
+[0mIM-->ID: inst xxxxxxxx, origaddr 0013[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0014[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 41 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0015
+[0mIM-->ID: inst xxxxxxxx, origaddr 0014[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0013[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 42 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0014
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0015[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0014[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 43 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0015
+[0mIM-->ID: inst xxxxxxxx, origaddr 0014[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0015[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 44 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0016
+[0mIM-->ID: inst xxxxxxxx, origaddr 0015[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0014[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 45 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0015
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0016[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0015[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 46 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0016
+[0mIM-->ID: inst xxxxxxxx, origaddr 0015[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0016[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 47 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0017
+[0mIM-->ID: inst xxxxxxxx, origaddr 0016[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0015[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 48 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0016
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0017[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0016[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 49 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0017
+[0mIM-->ID: inst xxxxxxxx, origaddr 0016[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0017[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 50 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0018
+[0mIM-->ID: inst xxxxxxxx, origaddr 0017[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0016[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 51 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0017
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0018[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0017[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 52 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0018
+[0mIM-->ID: inst xxxxxxxx, origaddr 0017[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0018[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 53 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0019
+[0mIM-->ID: inst xxxxxxxx, origaddr 0018[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0017[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 54 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0018
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 0019[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0018[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 55 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 0019
+[0mIM-->ID: inst xxxxxxxx, origaddr 0018[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0019[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 56 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 001a
+[0mIM-->ID: inst xxxxxxxx, origaddr 0019[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0018[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 57 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 0019
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 001a[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0019[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 58 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 001a
+[0mIM-->ID: inst xxxxxxxx, origaddr 0019[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 001a[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 59 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 001b
+[0mIM-->ID: inst xxxxxxxx, origaddr 001a[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 0019[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 60 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 001a
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 001b[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 001a[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 61 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 001b
+[0mIM-->ID: inst xxxxxxxx, origaddr 001a[0m
+ID<->RF: rd_reserve 1, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 0, rs_r 0
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 001b[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 62 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[0mIF-->ID: v 1
+[0mIF-->IM: addr 001c
+[0mIM-->ID: inst xxxxxxxx, origaddr 001b[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[0mID-->EX: v 1, src 00000000, dest 00000000, cc xxx,
+[0m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 001a[0m
+[100m[30mEX-->RF: wb 0, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[46m[30mSTALL:   idif 1, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+[41m[30m### cycle 63 ###[0m
+[0mIF:      branch_i 0, baddr_i 0000[0m
+[100m[30mIF-->ID: v 0
+[100m[30mIF-->IM: addr 001b
+[100m[30mIM-->ID: inst xxxxxxxx, origaddr 001c[0m
+ID<->RF: rd_reserve 0, rd_name x, rs_name x,
+         rd_data 00000000, rs_data 00000000, rd_r 1, rs_r 1
+[100m[30mID-->EX: v 0, src 00000000, dest 00000000, cc xxx,
+[100m[30m         wb 1, wb_rd_name x, dopc 000000000000, opc xxxxxxx, origaddr 001b[0m
+[0mEX-->RF: wb 1, wb_rd_name x, wb_rd_data 00000000[0m
+ID-->DM: dm_addr xxxx
+EX<->DM: w 0, write 00000000, read xxxxxxxx
+[100m[30mSTALL:   idif 0, exid 0[0m
+Regs:    00000000 00000000 00000010 00000011 00000100 00000101 00000110 00000111
+         00001000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+Status:  000000
+DATA:    00000000000000000000000000000000000000
+JDATA:   x0000000000000000
+$finish called from file "../test/test_run.v", line 36.
+$finish at simulation time                 6410
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 641000 ps
+CPU Time:      0.270 seconds;       Data structure size:   1.0Mb
+Tue Feb 13 17:20:38 2018
